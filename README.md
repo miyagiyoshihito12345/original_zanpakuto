@@ -83,3 +83,6 @@ https://woshidan.hatenadiary.jp/entry/2021/04/05/205301
 → https://osamudaira.com/217/
 #### 管理画面へのログイン機能、ユーザー、投稿のCRUD機能
 → https://osamudaira.com/257/
+
+## 画面遷移図
+https://www.figma.com/file/c5lOCP9ThpX4PymcfLGZkF/Untitled?type=design&node-id=0%3A1&mode=design&t=Qd7h8gmYp4W0o7hz-1
