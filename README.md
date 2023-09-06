@@ -89,4 +89,4 @@ https://woshidan.hatenadiary.jp/entry/2021/04/05/205301
 https://www.figma.com/file/c5lOCP9ThpX4PymcfLGZkF/Untitled?type=design&node-id=0%3A1&mode=design&t=Qd7h8gmYp4W0o7hz-1
 
 ## ER図
-![](https://i.gyazo.com/4372dc36a5307cfc0e94876270647f09.png)
+![](https://i.gyazo.com/a5db883cfc2aad36188405589e67e9b5.png)
