@@ -46,6 +46,9 @@ gem 'bootstrap', '~> 5.0.2'
 
 gem 'jquery-rails'
 
+gem 'sorcery', '0.16.3'
+gem 'pry-byebug'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
