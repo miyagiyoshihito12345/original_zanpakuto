@@ -11,13 +11,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <%= link_to '投稿一覧', '#' ,class: 'nav-link' %>
+          <%= link_to t('posts.index.title'), '#' ,class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'マイページ', '#', class: 'nav-link' %>
+          <%= link_to t('profiles.show.title'), '#', class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'ログアウト', logout_path, class: 'nav-link', data: { turbo_method: :delete } %>
+          <%= link_to t('defaults.logout'), logout_path, class: 'nav-link', data: { turbo_method: :delete } %>
         </li>
       </ul>
     </div>
