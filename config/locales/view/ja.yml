@@ -39,3 +39,6 @@ ja:
   profiles:
     show:
       title: 'マイページ'
+      profile_edit_btn: '編集'
+      name: 'ユーザー名'
+      email: 'メールアドレス'
