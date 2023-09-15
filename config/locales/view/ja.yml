@@ -8,6 +8,8 @@ ja:
     footer_rules: '利用規約'
     footer_privacy: 'プライバシーポリシー'
     footer_contact: 'お問い合わせ'
+    message:
+      require_login: 'ログインして下さい'
   users:
     new:
       title: 'ユーザー登録'
@@ -32,8 +34,13 @@ ja:
   posts:
     index:
       title: '投稿一覧'
+      no_result: 'まだ投稿はありません'
     new:
       title: '投稿する'
+    show:
+      kaigo: '解号'
+      shikai: '始解'
+      bankai: '卍解'
     bookmarks:
       title: 'ブックマーク一覧'
   profiles:

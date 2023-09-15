@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_14_063923) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_15_061445) do
+  create_table "posts", force: :cascade do |t|
+    t.string "kaigo"
+    t.string "kaigo_hurigana"
+    t.string "shikai", null: false
+    t.string "shikai_hurigana"
+    t.text "ability", null: false
+    t.string "bankai"
+    t.string "bankai_hurigana"
+    t.text "bankai_ability"
+    t.string "image"
+    t.text "detail"
+    t.boolean "is_draft", default: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -22,4 +40,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_063923) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "posts", "users"
 end
