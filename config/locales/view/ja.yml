@@ -8,6 +8,8 @@ ja:
     footer_rules: '利用規約'
     footer_privacy: 'プライバシーポリシー'
     footer_contact: 'お問い合わせ'
+    message:
+      require_login: 'ログインして下さい'
   users:
     new:
       title: 'ユーザー登録'
