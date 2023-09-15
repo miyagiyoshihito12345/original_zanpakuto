@@ -9,4 +9,8 @@ ja:
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
         name: 'ユーザー名'
+      post:
+        kaigo: '解号'
+        shikai: '始解'
+        bankai: '卍解'
         

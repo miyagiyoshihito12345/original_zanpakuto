@@ -1,0 +1,34 @@
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <%= image_tag 'default_post.jpg', style: 'width: 100%', alt: 'Alt text', class: 'img-class' %>
+      <%= post.user.name %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body p-2 ps-1">
+          <h5 class="mb-1 card-title">
+            【<%= t('posts.show.kaigo') %>】
+            <ruby>
+              <%= post.kaigo %>
+              <rt><%= post.kaigo_hurigana %></rt>
+            </ruby>
+          </h5>
+          <h5 class="card-title mb-1">
+            【<%= t('posts.show.shikai') %>】
+            <ruby>
+              <%= post.shikai %>
+              <rt><%= post.shikai_hurigana %></rt>
+            </ruby>
+          </h5>
+        <p class="card-text mb-1"><small class="txt-limit text-dark"><%= post.ability %></small></p>
+        <h5 class="card-title">
+          【<%= t('posts.show.bankai') %>】
+          <ruby>
+            <%= post.bankai %>
+            <rt><%= post.bankai_hurigana %></rt>
+          </ruby>
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>

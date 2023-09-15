@@ -1,1 +1,7 @@
 @import "bootstrap";
+.txt-limit {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 4; /* 任意の行数を指定 */
+}
