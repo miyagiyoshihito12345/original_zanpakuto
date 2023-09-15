@@ -13,6 +13,9 @@ ja:
       title: 'ユーザー登録'
       to_login_page: 'ログインページへ'
       button: '登録'
+    create:
+      success: 'ユーザー登録、ログインしました'
+      fail: 'ユーザー登録に失敗しました'
   user_sessions:
     new:
       title: 'ログイン'
@@ -21,6 +24,11 @@ ja:
       to_register_page: '登録ページへ'
       password_forget: 'パスワードをお忘れの方はこちら'
       button: 'ログイン'
+    create:
+      success: 'ログインしました'
+      fail: 'ログインに失敗しました'
+    destroy:
+      success: 'ログアウトしました'
   posts:
     index:
       title: '投稿一覧'
