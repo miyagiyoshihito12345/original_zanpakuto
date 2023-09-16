@@ -10,10 +10,13 @@ ja:
     footer_contact: 'お問い合わせ'
     confirm: '確認画面へ'
     draft: '下書きに保存'
+    edit: '編集'
     message:
       require_login: 'ログインして下さい'
       created: '%{item}を作成しました'
       not_created: '%{item}を作成できませんでした'
+      updated: '%{item}を更新しました'
+      not_updated: '%{item}の更新に失敗しました'
   users:
     new:
       title: 'ユーザー登録'
@@ -53,3 +56,5 @@ ja:
       profile_edit_btn: '編集'
       name: 'ユーザー名'
       email: 'メールアドレス'
+    edit:
+      title: 'プロフィール編集'

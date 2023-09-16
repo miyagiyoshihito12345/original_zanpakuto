@@ -9,6 +9,7 @@ ja:
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
         name: 'ユーザー名'
+        avatar: 'アバター'
       post:
         kaigo: '解号'
         kaigo_hurigana: '解号ふりがな'
