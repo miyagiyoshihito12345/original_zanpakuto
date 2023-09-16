@@ -8,8 +8,12 @@ ja:
     footer_rules: '利用規約'
     footer_privacy: 'プライバシーポリシー'
     footer_contact: 'お問い合わせ'
+    confirm: '確認画面へ'
+    draft: '下書きに保存'
     message:
       require_login: 'ログインして下さい'
+      created: '%{item}を作成しました'
+      not_created: '%{item}を作成できませんでした'
   users:
     new:
       title: 'ユーザー登録'
