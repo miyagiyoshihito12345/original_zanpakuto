@@ -8,7 +8,7 @@ ja:
     footer_rules: '利用規約'
     footer_privacy: 'プライバシーポリシー'
     footer_contact: 'お問い合わせ'
-    confirm: '確認画面へ'
+    post: '投稿する'
     draft: '下書きに保存'
     edit: '編集'
     message:
@@ -17,6 +17,8 @@ ja:
       not_created: '%{item}を作成できませんでした'
       updated: '%{item}を更新しました'
       not_updated: '%{item}の更新に失敗しました'
+      draft_created: '下書きを作成しました'
+      draft_not_created: '下書きの作成に失敗しました'
   users:
     new:
       title: 'ユーザー登録'
@@ -56,5 +58,7 @@ ja:
       profile_edit_btn: '編集'
       name: 'ユーザー名'
       email: 'メールアドレス'
+      no_result: '下書きはありません'
+      draft_title: '下書き'
     edit:
       title: 'プロフィール編集'
