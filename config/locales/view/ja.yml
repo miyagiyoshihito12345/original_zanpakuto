@@ -47,9 +47,13 @@ ja:
     new:
       title: '投稿する'
     show:
+      title: '詳細画面'
       kaigo: '解号'
       shikai: '始解'
+      ability: '能力'
       bankai: '卍解'
+      bankai_ability: '卍解の能力'
+      detail: '補足説明'
     bookmarks:
       title: 'ブックマーク一覧'
   profiles:
