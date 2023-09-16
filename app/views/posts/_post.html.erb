@@ -19,7 +19,7 @@
         <h5 class="card-title mb-1">
           【<%= t('posts.show.shikai') %>】
           <ruby>
-            <%= post.shikai %>
+            <%= link_to post.shikai, post_path(post) %>
             <rt><%= post.shikai_hurigana %></rt>
           </ruby>
         </h5>

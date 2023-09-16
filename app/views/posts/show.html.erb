@@ -1,0 +1,67 @@
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h1 class="float-left mb-5"><%= t('.title') %></h1>
+      <div style="width: 30%; max-height: 306px;">
+        <%= image_tag @post.image.url, class: 'card-img-top' %>
+      </div>
+        <%= image_tag @post.user.avatar.url, class: 'rounded-circle', size: '30x30' %>
+         <%= @post.user.name %> 
+      <table class="table">
+        <% if @post.kaigo.present? %>
+          <tr>
+            <th scope="row">【<%= t('.kaigo')  %>】</th>
+            <td>
+              <ruby>
+                <%= @post.kaigo %>
+                <rt><%= @post.kaigo_hurigana %></rt>
+              </ruby>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <th scope="row" style="padding-top: 14px;">【<%= t('.shikai')  %>】</th>
+          <td class="pt-3">
+            <ruby>
+              <%= @post.shikai %>
+              <rt><%= @post.shikai_hurigana %></rt>
+            </ruby>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">【<%= t('.ability')  %>】</th>
+          <td>
+            <%= @post.ability %>
+          </td>
+        </tr>
+        <% if @post.bankai.present? %>
+          <tr>
+            <th scope="row" style="padding-top: 14px;">【<%= t('.bankai')  %>】</th>
+            <td class="pt-3">
+              <ruby>
+                <%= @post.bankai %>
+                <rt><%= @post.bankai_hurigana %></rt>
+              </ruby>
+            </td>
+          </tr>
+        <% end %>
+        <% if @post.bankai_ability.present? %>
+          <tr>
+            <th scope="row" style="min-width: 130px;">【<%= t('.bankai_ability')  %>】</th>
+            <td>
+              <%= @post.bankai_ability %>
+            </td>
+          </tr>
+        <% end %>
+        <% if @post.detail.present? %>
+          <tr>
+            <th scope="row">【<%= t('.detail')  %>】</th>
+            <td>
+              <%= @post.detail %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
