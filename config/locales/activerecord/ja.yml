@@ -11,6 +11,13 @@ ja:
         name: 'ユーザー名'
       post:
         kaigo: '解号'
+        kaigo_hurigana: '解号ふりがな'
         shikai: '始解'
+        shikai_hurigana: '始解ふりがな'
+        ability: '能力'
         bankai: '卍解'
+        bankai_hurigana: '卍解ふりがな'
+        bankai_ability: '卍解の能力'
+        image: '画像添付'
+        detail: '補足説明'
         

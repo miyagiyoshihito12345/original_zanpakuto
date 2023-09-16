@@ -50,6 +50,7 @@ gem 'sorcery', '0.16.3'
 gem 'pry-byebug'
 gem 'rails-i18n', '~> 7.0.0'
 gem 'faker'
+gem 'carrierwave', '~> 3.0'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
