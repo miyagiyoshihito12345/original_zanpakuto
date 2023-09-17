@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
   def index
-    @posts = Post.where(is_draft: false).includes(:user).order(created_at: :desc)
+    @posts = Post.where(is_draft: false).includes(:user).order(updated_at: :desc)
   end 
 
   def new
@@ -30,6 +30,45 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+  end
+
+  def edit
+    @post = current_user.posts.find(params[:id])
+  end
+
+  def update
+    @post = current_user.posts.find(params[:id])
+    if @post.is_draft == false
+      if @post.update(post_params)
+        redirect_to @post, success: t('defaults.message.updated', item: Post.model_name.human)
+      else
+        flash.now['danger'] = t('defaults.message.not_updated', item: Post.model_name.human)
+        render :edit, status: :unprocessable_entity
+      end
+    elsif @post.is_draft == true
+      if params[:commit] == t('defaults.post')
+        if @post.update(post_params)
+          @post.update(is_draft: false)
+          redirect_to @post, success: t('defaults.message.created', item: Post.model_name.human)
+        else
+          flash.now['danger'] = t('defaults.message.not_created', item: Post.model_name.human)
+          render :edit, status: :unprocessable_entity
+        end 
+      elsif params[:commit] == t('defaults.draft')
+        if @post.update(post_params)
+          redirect_to profiles_path, success: t('defaults.message.draft_updated')
+        else
+          flash.now['danger'] = t('defaults.message.draft_not_updated')
+          render :edit, status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
+  def destroy
+    @post = current_user.posts.find(params[:id])
+    @post.destroy!
+    redirect_to profiles_path, success: t('defaults.message.deleted', item: Post.model_name.human)
   end
 
   private

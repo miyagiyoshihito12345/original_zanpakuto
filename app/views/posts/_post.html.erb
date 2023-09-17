@@ -2,8 +2,12 @@
   <div class="row g-0">
     <div class="col-md-4">
       <%= image_tag post.image.url, class: 'card-img-top', size: '171x153' %>
+      <% if current_user&.own?(post) %>
+        <%= render 'posts/crud_menus', post: post %>
+      <% else %>
       <%= image_tag post.user.avatar.url, class: 'rounded-circle', size: '30x30' %>
       <%= post.user.name %>
+    <% end %>
     </div>
     <div class="col-md-8">
       <div class="card-body p-2 ps-1">

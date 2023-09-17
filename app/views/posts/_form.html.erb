@@ -62,6 +62,12 @@
     <%= f.text_area :detail, class: 'form-control', rows: 10 %>
   </div>
 
+  <% if 'new' == action_name || post.is_draft == true %>
   <%= f.submit t('defaults.draft'), class: 'btn btn-primary' %>
+<% end %>
+<% if 'edit' == action_name && post.is_draft == false %>
+  <%= f.submit t('defaults.update'), class: 'btn btn-primary' %>
+<% else %>
   <%= f.submit t('defaults.post'), class: 'btn btn-primary' %>
+<% end %>
 <% end %>
