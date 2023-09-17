@@ -53,6 +53,7 @@ gem 'faker'
 gem 'carrierwave', '~> 3.0'
 gem 'fog-aws'
 gem 'kaminari'
+gem 'ransack', '4.0.0'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
