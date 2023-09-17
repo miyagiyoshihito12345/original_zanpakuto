@@ -38,5 +38,3 @@
 
 # Ignore bundler gems.
 /vendor/bundle
-
-/.env
