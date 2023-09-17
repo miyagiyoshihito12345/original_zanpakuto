@@ -2,7 +2,8 @@ class ProfilesController < ApplicationController
   before_action :set_user, only: %i[edit update]
 
   def show
-    @posts = current_user.posts.where(is_draft: true).includes(:user).order(created_at: :desc)
+    @posts = current_user.posts.where(is_draft: true).order(created_at: :desc)
+    @myposts = current_user.posts.where(is_draft: false).order(created_at: :desc)
   end
 
   def edit;end
