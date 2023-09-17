@@ -68,7 +68,7 @@ class PostsController < ApplicationController
   def destroy
     @post = current_user.posts.find(params[:id])
     @post.destroy!
-    redirect_to profiles_path, success: t('defaults.message.deleted', item: Post.model_name.human)
+    redirect_to profiles_path, success: t('defaults.message.deleted')
   end
 
   private
