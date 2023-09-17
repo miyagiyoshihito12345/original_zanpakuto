@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
   def index
-    @posts = Post.where(is_draft: false).includes(:user).order(updated_at: :desc)
+    @posts = Post.where(is_draft: false).includes(:user).order(updated_at: :desc).page(params[:page])
   end 
 
   def new

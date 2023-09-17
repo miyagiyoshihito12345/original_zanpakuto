@@ -17,6 +17,14 @@
           <td><%= image_tag current_user.avatar.url, class: 'rounded-circle', size: '50x50' %></td> 
         </tr>
       </table>
+      <h3 id="post" style="text-align: center;" class="mt-5 mb-3"><%= t('.my_post_title') %></h3>
+      <div class="row" style="justify-content: space-around;">
+        <% if @myposts.present? %>
+          <%= render @myposts %>
+        <% else %>
+          <p><%= t('.post_no_result') %></p>
+        <% end %>
+      </div>
       <h3 id="post" style="text-align: center;" class="mt-5 mb-3"><%= t('.draft_title') %></h3>
       <div class="row" style="justify-content: space-around;">
         <% if @posts.present? %>

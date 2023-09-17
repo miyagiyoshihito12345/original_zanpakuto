@@ -63,10 +63,12 @@ ja:
       title: '編集する'
   profiles:
     show:
+      my_post_title: '自分の投稿'
       title: 'マイページ'
       profile_edit_btn: '編集'
       name: 'ユーザー名'
       email: 'メールアドレス'
+      post_no_result: '自分の投稿はありません'
       no_result: '下書きはありません'
       draft_title: '下書き'
     edit:
