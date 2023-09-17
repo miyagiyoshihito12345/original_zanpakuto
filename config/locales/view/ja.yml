@@ -11,6 +11,8 @@ ja:
     post: '投稿する'
     draft: '下書きに保存'
     edit: '編集'
+    destroy: '削除'
+    update: '更新する'
     message:
       require_login: 'ログインして下さい'
       created: '%{item}を作成しました'
@@ -19,6 +21,9 @@ ja:
       not_updated: '%{item}の更新に失敗しました'
       draft_created: '下書きを作成しました'
       draft_not_created: '下書きの作成に失敗しました'
+      draft_updated: '下書きを更新しました'
+      draft_not_updated: '下書きを更新できませんでした'
+      deleted: '削除しました'
   users:
     new:
       title: 'ユーザー登録'
@@ -54,8 +59,8 @@ ja:
       bankai: '卍解'
       bankai_ability: '卍解の能力'
       detail: '補足説明'
-    bookmarks:
-      title: 'ブックマーク一覧'
+    edit:
+      title: '編集する'
   profiles:
     show:
       title: 'マイページ'

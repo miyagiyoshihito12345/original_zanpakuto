@@ -7,6 +7,7 @@
       </div>
         <%= image_tag @post.user.avatar.url, class: 'rounded-circle', size: '30x30' %>
          <%= @post.user.name %> 
+         <%= render 'crud_menus', post: @post if current_user&.own?(@post) %>
       <table class="table">
         <% if @post.kaigo.present? %>
           <tr>
@@ -29,7 +30,7 @@
           </td>
         </tr>
         <tr>
-          <th scope="row">【<%= t('.ability')  %>】</th>
+          <th scope="row" style="min-width: 130px;">【<%= t('.ability')  %>】</th>
           <td>
             <%= @post.ability %>
           </td>
