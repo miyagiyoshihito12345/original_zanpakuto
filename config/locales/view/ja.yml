@@ -13,6 +13,9 @@ ja:
     edit: '編集'
     destroy: '削除'
     update: '更新する'
+    search_shikai: '始解名'
+    search_bankai: '卍解名'
+    search_username: 'ユーザー名'
     message:
       require_login: 'ログインして下さい'
       created: '%{item}を作成しました'
@@ -61,6 +64,9 @@ ja:
       detail: '補足説明'
     edit:
       title: '編集する'
+    search:
+      title: '検索結果'
+      no_result: '検索結果はありません'
   profiles:
     show:
       my_post_title: '自分の投稿'

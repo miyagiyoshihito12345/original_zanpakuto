@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
+
 
   mount_uploader :avatar, AvatarUploader
   has_many :posts, dependent: :destroy

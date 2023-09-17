@@ -1,0 +1,22 @@
+<%= search_form_for @q, url: search_path do |f| %>
+  <div class="input-group">
+    <div data-controller="autocomplete" data-autocomplete-url-value="/posts/search_shikai" style="position: relative;" role="combobox">
+      <%= f.search_field :shikai_cont, data: { 'autocomplete-target' => 'input' }, placeholder: t('defaults.search_shikai') %>
+      <%= f.hidden_field :id, data: { 'autocomplete-target' => 'hidden' } %>
+      <ul class="list-group" data-autocomplete-target="results" style="width: 185px; position: absolute; z-index: 10;"></ul>
+    </div>
+    <div data-controller="autocomplete" data-autocomplete-url-value="/posts/search_bankai" style="position: relative;" role="combobox">
+      <%= f.search_field :bankai_cont, data: { 'autocomplete-target' => 'input' }, placeholder: t('defaults.search_bankai') %>
+      <%= f.hidden_field :id, data: { 'autocomplete-target' => 'hidden' } %>
+      <ul class="list-group" data-autocomplete-target="results" style="width: 185px; position: absolute; z-index: 10;"></ul>
+    </div>
+    <div data-controller="autocomplete" data-autocomplete-url-value="/posts/search_username" style="position: relative;" role="combobox">
+      <%= f.search_field :user_name_cont, data: { 'autocomplete-target' => 'input' }, placeholder: t('defaults.search_username') %>
+      <%= f.hidden_field :id, data: { 'autocomplete-target' => 'hidden' } %>
+      <ul class="list-group" data-autocomplete-target="results" style="width: 185px; position: absolute; z-index: 10;"></ul>
+    </div>
+    <div class="input-group-append">
+      <%= f.submit  class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

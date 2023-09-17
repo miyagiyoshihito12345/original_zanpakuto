@@ -1,8 +1,28 @@
 class PostsController < ApplicationController
-  skip_before_action :require_login, only: %i[index show]
+  skip_before_action :require_login, only: %i[index show search search_shikai search_bankai search_username]
+  layout 'layouts/autocomplete', only: %i[ search_shikai search_bankai search_username ]
+
   def index
+    @q = Post.ransack(params[:q])
     @posts = Post.where(is_draft: false).includes(:user).order(updated_at: :desc).page(params[:page])
   end 
+
+  def search
+    if !params[:q][:shikai_cont].present? && !params[:q][:bankai_cont].present? && !params[:q][:user_name_cont].present?
+      redirect_to root_path
+    end
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true)
+  end
+  def search_shikai
+    @posts = Post.where("shikai like ?", "%#{params[:q]}%")
+  end
+  def search_bankai
+    @posts = Post.where("bankai like ?", "%#{params[:q]}%")
+  end
+  def search_username
+    @users = User.where("name like ?", "%#{params[:q]}%")
+  end
 
   def new
     @post = Post.new
