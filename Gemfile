@@ -54,6 +54,7 @@ gem 'carrierwave', '~> 3.0'
 gem 'fog-aws'
 gem 'kaminari'
 gem 'ransack', '4.0.0'
+gem "meta-tags"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
