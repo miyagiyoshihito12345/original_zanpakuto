@@ -1,12 +1,16 @@
 <div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
     <div class="col-md-4">
-      <%= image_tag post.image.url, class: 'card-img-top', size: '171x153' %>
+      <div class="post-item-img">
+      <%= image_tag post.image.url, class: 'card-img-top', style: 'width: 100%; height: 100%;' %>
+      </div>
       <% if current_user&.own?(post) %>
         <%= render 'posts/crud_menus', post: post %>
       <% else %>
+        <div style="align-items: center; display: flex;" class="mt-1 ms-2">
       <%= image_tag post.user.avatar.url, class: 'rounded-circle', size: '30x30' %>
-      <%= post.user.name %>
+      <div class="ms-2"><%= post.user.name %></div>
+        </div>
     <% end %>
     </div>
     <div class="col-md-8">
