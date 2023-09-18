@@ -22,7 +22,7 @@
         <% if @myposts.present? %>
           <%= render @myposts %>
         <% else %>
-          <p><%= t('.post_no_result') %></p>
+          <p class="text-center"><%= t('.post_no_result') %></p>
         <% end %>
       </div>
       <h3 id="post" style="text-align: center;" class="mt-5 mb-3"><%= t('.draft_title') %></h3>
@@ -30,7 +30,7 @@
         <% if @posts.present? %>
           <%= render @posts %>
         <% else %>
-          <p><%= t('.no_result') %></p>
+          <p class="text-center"><%= t('.no_result') %></p>
         <% end %>
       </div>
 
