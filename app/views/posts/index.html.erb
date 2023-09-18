@@ -21,7 +21,7 @@
         <% if @posts.present? %>
           <%= render @posts %>
         <% else %>
-          <p><%= t('.no_result') %></p>
+          <p class="text-center"><%= t('.no_result') %></p>
         <% end %>
       </div>
         <%= paginate @posts %>
