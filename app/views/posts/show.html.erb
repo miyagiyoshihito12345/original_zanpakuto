@@ -34,7 +34,7 @@
         <tr>
           <th scope="row" style="min-width: 130px;">【<%= t('.ability')  %>】</th>
           <td>
-            <%= @post.ability %>
+            <%= simple_format(@post.ability) %>
           </td>
         </tr>
         <% if @post.bankai.present? %>
@@ -52,7 +52,7 @@
           <tr>
             <th scope="row" style="min-width: 130px;">【<%= t('.bankai_ability')  %>】</th>
             <td>
-              <%= @post.bankai_ability %>
+              <%= simple_format(@post.bankai_ability) %>
             </td>
           </tr>
         <% end %>
@@ -60,7 +60,7 @@
           <tr>
             <th scope="row">【<%= t('.detail')  %>】</th>
             <td>
-              <%= @post.detail %>
+              <%= simple_format(@post.detail) %>
             </td>
           </tr>
         <% end %>
