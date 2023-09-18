@@ -1,7 +1,35 @@
 @import "bootstrap";
+body {
+	font-family: serif;
+}
 .txt-limit {
 	overflow: hidden;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 4; /* 任意の行数を指定 */
+}
+.smart_hoge {
+	display: none;
+}
+
+/* スマホ表示時 */
+@media (max-width: 860px) {
+	.smart_hoge {
+		display: block;
+	}
+	.hoge {
+		display: none;
+	}
+}
+
+@media (max-width: 360px) {
+	.top-page-title {
+		font-size: 20px;
+	}
+	.top-page-sub-title {
+		font-size: 8px;
+	}
+	.top-page-detail {
+		font-size: 12px;
+	}
 }
