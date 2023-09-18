@@ -2,6 +2,9 @@
 body {
 	font-family: serif;
 }
+a {
+	color: black;
+}
 .txt-limit {
 	overflow: hidden;
 	display: -webkit-box;
@@ -11,8 +14,22 @@ body {
 .smart_hoge {
 	display: none;
 }
+.post-item-img {
+	width: 171px;
+	height: 153px;
+}
+.show-img {
+	width: 342px;
+	height: 306px;
+}
 
 /* スマホ表示時 */
+@media (max-width: 768px) {
+	.post-item-img {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
 @media (max-width: 860px) {
 	.smart_hoge {
 		display: block;
@@ -32,4 +49,10 @@ body {
 	.top-page-detail {
 		font-size: 12px;
 	}
+.show-img {
+	width: 171px;
+	height: 153px;
+	margin-left: auto;
+	margin-right: auto;
+}
 }

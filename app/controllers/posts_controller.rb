@@ -12,7 +12,7 @@ class PostsController < ApplicationController
       redirect_to root_path
     end
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true)
+    @posts = @q.result(distinct: true).includes(:user).order(updated_at: :desc).page(params[:page])
   end
   def search_shikai
     @posts = Post.where("shikai like ?", "%#{params[:q]}%")
