@@ -41,6 +41,9 @@
             </ruby>
           </h5>
         <% end %>
+        <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【斬魄刀】%0a#{ post.shikai }(#{ post.shikai_hurigana })%0a%0aオリジナル斬魄刀を投稿しました！%0a%23BLEACH%20%20%23BLEACH_anime%20%20%23オリジナル斬魄刀投稿サイト%20", target: '_blank' do %>
+          <%= fa_stacked_icon "twitter", base: "square-o", style: 'color: #3399FF;' %>
+          <% end %>
       </div>
     </div>
   </div>
