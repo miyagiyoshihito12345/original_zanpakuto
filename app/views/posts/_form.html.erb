@@ -62,13 +62,13 @@
     <%= f.text_area :detail, class: 'form-control mt-1', rows: 10 %>
   </div>
   <div style="display: flex; justify-content: space-around; margin-top: 50px;">
-  <% if 'new' == action_name || post.is_draft == true %>
-  <%= f.submit t('defaults.draft'), class: 'btn btn-dark' %>
-<% end %>
-<% if 'edit' == action_name && post.is_draft == false %>
-  <%= f.submit t('defaults.update'), class: 'btn btn-dark' %>
-<% else %>
-  <%= f.submit t('defaults.post'), class: 'btn btn-dark' %>
-<% end %>
+    <% if 'new' == action_name || post.is_draft == true || 'create' == action_name %>
+      <%= f.submit t('defaults.draft'), class: 'btn btn-dark' %>
+    <% end %>
+    <% if 'edit' == action_name && post.is_draft == false %>
+      <%= f.submit t('defaults.update'), class: 'btn btn-dark' %>
+    <% else %>
+      <%= f.submit t('defaults.post'), class: 'btn btn-dark' %>
+    <% end %>
   </div>
 <% end %>
