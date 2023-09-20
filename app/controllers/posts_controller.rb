@@ -12,13 +12,13 @@ class PostsController < ApplicationController
       redirect_to root_path
     end
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(:user).order(updated_at: :desc).page(params[:page])
+    @posts = @q.result(distinct: true).where(is_draft: false).includes(:user).order(updated_at: :desc).page(params[:page])
   end
   def search_shikai
-    @posts = Post.where("shikai like ?", "%#{params[:q]}%")
+    @posts = Post.where("shikai like ?", "%#{params[:q]}%").where(is_draft: false)
   end
   def search_bankai
-    @posts = Post.where("bankai like ?", "%#{params[:q]}%")
+    @posts = Post.where("bankai like ?", "%#{params[:q]}%").where(is_draft: false)
   end
   def search_username
     @users = User.where("name like ?", "%#{params[:q]}%")
