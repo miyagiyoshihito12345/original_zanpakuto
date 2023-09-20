@@ -16,13 +16,23 @@
     <div class="col-md-8">
       <div class="card-body p-2 ps-1">
         <% if post.kaigo.present? %>
-          <h5 class="mb-1 card-title">
-            【<%= t('posts.show.kaigo') %>】
-            <ruby>
-              <%= post.kaigo %>
-              <rt><%= post.kaigo_hurigana %></rt>
-            </ruby>
-          </h5>
+          <% if post.kaigo.length > 9 %>
+            <h5 class="mb-1 card-title" style="font-size: 16px;">
+              【<%= t('posts.show.kaigo') %>】
+              <ruby>
+                <%= post.kaigo %>
+                <rt><%= post.kaigo_hurigana %></rt>
+              </ruby>
+            </h5>
+          <% else %>
+            <h5 class="mb-1 card-title">
+              【<%= t('posts.show.kaigo') %>】
+              <ruby>
+                <%= post.kaigo %>
+                <rt><%= post.kaigo_hurigana %></rt>
+              </ruby>
+            </h5>
+          <% end %>
         <% end %>
         <h5 class="card-title mb-1">
           【<%= t('posts.show.shikai') %>】
