@@ -50,6 +50,13 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    if @post.is_draft == true
+      if current_user&.id == @post.user_id
+        render :show
+      else
+        redirect_to root_path
+      end
+    end
   end
 
   def edit
