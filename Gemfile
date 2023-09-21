@@ -56,6 +56,7 @@ gem 'kaminari'
 gem 'ransack', '4.0.0'
 gem "meta-tags"
 gem "font-awesome-rails"
+gem 'sitemap_generator'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
