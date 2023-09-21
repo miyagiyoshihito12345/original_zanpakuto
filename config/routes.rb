@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[new create]
   resource :profiles, only: %i[show edit update]
-  resources :posts, only: %i[new create show edit update destroy] do
+  resources :posts do
     get :search_shikai, on: :collection
     get :search_bankai, on: :collection
     get :search_username, on: :collection
