@@ -57,6 +57,7 @@ gem 'ransack', '4.0.0'
 gem "meta-tags"
 gem "font-awesome-rails"
 gem 'sitemap_generator'
+gem 'acts-as-taggable-on', '~> 9.0'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

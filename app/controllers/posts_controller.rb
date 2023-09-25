@@ -8,6 +8,11 @@ class PostsController < ApplicationController
   end 
 
   def search
+    if params[:tag_name]
+      @q = Post.ransack(params[:q])
+      @posts = Post.tagged_with("#{params[:tag_name]}").where(is_draft: false).includes(:user).order(updated_at: :desc).page(params[:page])
+      return
+    end
     if !params[:q][:shikai_cont].present? && !params[:q][:bankai_cont].present? && !params[:q][:user_name_cont].present?
       redirect_to root_path
     end
@@ -22,6 +27,9 @@ class PostsController < ApplicationController
   end
   def search_username
     @users = User.where("name like ?", "%#{params[:q]}%")
+  end
+  def search_tag
+    @tags = Tag.where("name like ?", "%#{params[:q]}%")
   end
 
   def new
@@ -101,6 +109,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:kaigo, :kaigo_hurigana, :shikai, :shikai_hurigana, :ability, :bankai, :bankai_hurigana, :bankai_ability, :detail, :image, :image_cache)
+    params.require(:post).permit(:kaigo, :kaigo_hurigana, :shikai, :shikai_hurigana, :ability, :bankai, :bankai_hurigana, :bankai_ability, :detail, :image, :image_cache, :tag_list)
   end
 end

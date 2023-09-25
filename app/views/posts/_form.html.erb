@@ -61,6 +61,10 @@
     <%= f.label :detail %>
     <%= f.text_area :detail, class: 'form-control mt-1', rows: 10 %>
   </div>
+  <div class="form-group mt-4">
+    <%= f.label :tag_list %>
+      <%= f.text_field :tag_list, value: post.tag_list.join(','), class: "form-control mt-1", placeholder: "氷雪系,オサレ系,相手の神経操る系" %>
+  </div>
   <div style="display: flex; justify-content: space-around; margin-top: 50px;">
     <% if 'new' == action_name || post.is_draft == true || 'create' == action_name %>
       <%= f.submit t('defaults.draft'), class: 'btn btn-dark' %>
