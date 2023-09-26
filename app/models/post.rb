@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   mount_uploader :image, ImageUploader
+  acts_as_taggable
   belongs_to :user
 
   def self.ransackable_attributes(auth_object = nil)

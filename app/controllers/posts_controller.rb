@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   skip_before_action :require_login, only: %i[index show search search_shikai search_bankai search_username]
-  layout 'layouts/autocomplete', only: %i[ search_shikai search_bankai search_username ]
+  layout 'layouts/autocomplete', only: %i[ search_shikai search_bankai search_username search_tag ]
 
   def index
     @q = Post.ransack(params[:q])
@@ -8,9 +8,16 @@ class PostsController < ApplicationController
   end 
 
   def search
+    if params[:tag_name]
+      @tag_name = params[:tag_name]
+      @q = Post.ransack(params[:q])
+      @posts = Post.tagged_with("#{params[:tag_name]}").where(is_draft: false).includes(:user).order(updated_at: :desc).page(params[:page])
+      return
+    end
     if !params[:q][:shikai_cont].present? && !params[:q][:bankai_cont].present? && !params[:q][:user_name_cont].present?
       redirect_to root_path
     end
+    @tag_name = ""
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true).where(is_draft: false).includes(:user).order(updated_at: :desc).page(params[:page])
   end
@@ -22,6 +29,18 @@ class PostsController < ApplicationController
   end
   def search_username
     @users = User.where("name like ?", "%#{params[:q]}%")
+  end
+  def search_tag
+    if params[:q].end_with?(",")
+      @tags = Tag.none
+      @result = ""
+      return
+    end
+    string = params[:q]
+    elements = string.split(',')
+    elements.pop
+    @result = elements.join(',')
+    @tags = Tag.where("name like ?", "%#{params[:q].split(',').last}%")
   end
 
   def new
@@ -101,6 +120,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:kaigo, :kaigo_hurigana, :shikai, :shikai_hurigana, :ability, :bankai, :bankai_hurigana, :bankai_ability, :detail, :image, :image_cache)
+    params.require(:post).permit(:kaigo, :kaigo_hurigana, :shikai, :shikai_hurigana, :ability, :bankai, :bankai_hurigana, :bankai_ability, :detail, :image, :image_cache, :tag_list)
   end
 end

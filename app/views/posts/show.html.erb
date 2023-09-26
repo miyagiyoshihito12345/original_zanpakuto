@@ -12,6 +12,7 @@
       </div>
          <%= render 'crud_menus', post: @post if current_user&.own?(@post) %>
       <table class="table">
+        <%= render 'posts/tag_list', tag_list: @post.tag_list %>
         <% if @post.kaigo.present? %>
           <tr>
             <th scope="row">【<%= t('.kaigo')  %>】</th>

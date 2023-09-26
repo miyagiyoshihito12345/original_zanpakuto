@@ -15,6 +15,7 @@
     </div>
     <div class="col-md-8">
       <div class="card-body p-2 ps-1">
+        <%= render 'posts/tag_list', tag_list: post.tag_list %>
         <% if post.kaigo.present? %>
           <% if post.kaigo.length > 9 %>
             <h5 class="mb-1 card-title" style="font-size: 16px;">

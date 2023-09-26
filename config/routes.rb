@@ -15,5 +15,6 @@ Rails.application.routes.draw do
     get :search_shikai, on: :collection
     get :search_bankai, on: :collection
     get :search_username, on: :collection
+    get :search_tag, on: :collection
   end
 end
