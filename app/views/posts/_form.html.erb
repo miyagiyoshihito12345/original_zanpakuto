@@ -63,7 +63,11 @@
   </div>
   <div class="form-group mt-4">
     <%= f.label :tag_list %>
-      <%= f.text_field :tag_list, value: post.tag_list.join(','), class: "form-control mt-1", placeholder: "氷雪系,オサレ系,相手の神経操る系" %>
+    <div data-controller="autocomplete" data-autocomplete-url-value="/posts/search_tag" style="position: relative;" role="combobox">
+      <%= f.text_field :tag_list, value: post.tag_list.join(','), class: "form-control mt-1", placeholder: t('defaults.tag_placeholder'), data: { 'autocomplete-target' => 'input' } %>
+      <%= f.hidden_field :id, data: { 'autocomplete-target' => 'hidden' } %>
+      <ul class="list-group" data-autocomplete-target="results" style="width: 185px; position: absolute; z-index: 10;"></ul>
+    </div>
   </div>
   <div style="display: flex; justify-content: space-around; margin-top: 50px;">
     <% if 'new' == action_name || post.is_draft == true || 'create' == action_name %>

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   skip_before_action :require_login, only: %i[index show search search_shikai search_bankai search_username]
-  layout 'layouts/autocomplete', only: %i[ search_shikai search_bankai search_username ]
+  layout 'layouts/autocomplete', only: %i[ search_shikai search_bankai search_username search_tag ]
 
   def index
     @q = Post.ransack(params[:q])
@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def search
     if params[:tag_name]
+      @tag_name = params[:tag_name]
       @q = Post.ransack(params[:q])
       @posts = Post.tagged_with("#{params[:tag_name]}").where(is_draft: false).includes(:user).order(updated_at: :desc).page(params[:page])
       return
@@ -16,6 +17,7 @@ class PostsController < ApplicationController
     if !params[:q][:shikai_cont].present? && !params[:q][:bankai_cont].present? && !params[:q][:user_name_cont].present?
       redirect_to root_path
     end
+    @tag_name = ""
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true).where(is_draft: false).includes(:user).order(updated_at: :desc).page(params[:page])
   end
@@ -29,7 +31,16 @@ class PostsController < ApplicationController
     @users = User.where("name like ?", "%#{params[:q]}%")
   end
   def search_tag
-    @tags = Tag.where("name like ?", "%#{params[:q]}%")
+    if params[:q].end_with?(",")
+      @tags = Tag.none
+      @result = ""
+      return
+    end
+    string = params[:q]
+    elements = string.split(',')
+    elements.pop
+    @result = elements.join(',')
+    @tags = Tag.where("name like ?", "%#{params[:q].split(',').last}%")
   end
 
   def new
