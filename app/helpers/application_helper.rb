@@ -1,14 +1,7 @@
 module ApplicationHelper
-
-  def page_title(page_title = '')
-    base_title = 'オリジナル斬魄刀投稿サイト'
-
-    page_title.empty? ? base_title : page_title + ' | ' + base_title
-  end
-
   def default_meta_tags
     {
-      site: 'オリジナル斬魄刀投稿サイト',
+      site: 'OriginalZanpakutoShareService',
       title: 'オリジナル斬魄刀投稿サイト',
       reverse: true,
       charset: 'utf-8',
