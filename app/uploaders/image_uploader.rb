@@ -14,11 +14,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def default_url # デフォルトの画像ファイル
-    'default_post.jpg'
+    'default_post.webp'
   end
 
   def extension_whitelist # 拡張子の制限
-    %w[jpg jpeg gif png]
+    %w[jpg jpeg gif png webp]
   end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)

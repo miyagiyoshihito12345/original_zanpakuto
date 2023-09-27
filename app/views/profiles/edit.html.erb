@@ -29,7 +29,7 @@
           <%= f.file_field :avatar, class: "form-control mt-1", accept: 'image/*', onchange: 'previewImage(preview)' %>
           <%= f.hidden_field :avatar_cache %>
           <div class='mt-3 mb-3'>
-            <%= image_tag @user.avatar.url, id: 'preview', size: '100x100', class: 'rounded-circle' %>
+            <%= image_tag @user.avatar.url, id: 'preview', size: '100x100', class: 'rounded-circle', alt: "アバターのプレビュー" %>
           </div>
         </div>
         <%= f.submit  class: 'mt-4 ms-auto me-auto btn btn-dark', style: 'display: block;' %>

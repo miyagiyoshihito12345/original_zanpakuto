@@ -14,11 +14,11 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    'default_avatar.png'
+    'default_avatar.webp'
   end
 
   def extension_whitelist # 拡張子の制限
-    %w[jpg jpeg gif png]
+    %w[jpg jpeg gif png webp]
   end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
