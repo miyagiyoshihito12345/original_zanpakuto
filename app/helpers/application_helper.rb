@@ -1,7 +1,7 @@
 module ApplicationHelper
   def default_meta_tags
     {
-      site: 'オリジナル斬魄刀投稿サイト',
+      site: 'OriginalZanpakutoShareService',
       title: 'オリジナル斬魄刀投稿サイト',
       reverse: true,
       charset: 'utf-8',
