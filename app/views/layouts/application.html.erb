@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>オリジナル斬魄刀投稿サイト</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= favicon_link_tag('favicon.ico') %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= display_meta_tags(default_meta_tags) %>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WKJV3S8MSG"></script>
     <script>
@@ -10,14 +19,6 @@
 
       gtag('config', 'G-WKJV3S8MSG');
     </script>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= favicon_link_tag('favicon.ico') %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-    <%= display_meta_tags(default_meta_tags) %>
   </head>
 
   <body>
