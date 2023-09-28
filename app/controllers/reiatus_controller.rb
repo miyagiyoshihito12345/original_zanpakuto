@@ -1,5 +1,4 @@
 class ReiatusController < ApplicationController
-skip_before_action :require_login, only: %i[ create ]
   def create
     post = Post.find(params[:post_id])
     current_user.reiatu(post)
@@ -21,6 +20,5 @@ skip_before_action :require_login, only: %i[ create ]
   end
 
   def before_login
-     redirect_to login_path, warning: t('defaults.message.require_login')
   end
 end
