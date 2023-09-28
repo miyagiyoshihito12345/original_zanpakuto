@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "entry-reiatus-#{post.id}", frame: post do %>
+  <%= link_to reiatus_path(post_id: post.id), class: 'me-4', style: 'color: #026CE8; text-decoration:none;', data: { turbo_method: :post } do %>
+    <i class="fa fa-thumbs-o-up me-1" aria-hidden="true"></i>霊圧
+  <% end %>
+<% end %>
+

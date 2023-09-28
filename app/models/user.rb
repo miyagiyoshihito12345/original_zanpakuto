@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
   has_many :posts, dependent: :destroy
+  has_many :reiatus, dependent: :destroy 
+  has_many :reiatu_posts, through: :reiatus, source: :post
+
   def self.ransackable_attributes(auth_object = nil)
     ["name"]
   end
@@ -17,4 +20,16 @@ class User < ApplicationRecord
   def own?(object)
     id == object.user_id
   end 
+
+  def reiatu(post)
+      reiatu_posts << post
+  end
+
+  def unreiatu(post)
+      reiatu_posts.destroy(post)
+  end
+
+  def reiatu?(post)
+      reiatu_posts.include?(post)
+  end
 end

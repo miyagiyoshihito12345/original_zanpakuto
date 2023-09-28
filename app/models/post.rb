@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   mount_uploader :image, ImageUploader
   acts_as_taggable
   belongs_to :user
+  has_many :reiatus, dependent: :destroy
 
   def self.ransackable_attributes(auth_object = nil)
     ["created_at", "id", "shikai", "bankai", "updated_at"]

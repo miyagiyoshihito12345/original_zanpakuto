@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
   get 'search', to: 'posts#search'
+  get 'before_login_reiatus', to: 'reiatus#before_login'
 
   resources :users, only: %i[new create]
   resource :profiles, only: %i[show edit update]
@@ -17,4 +18,5 @@ Rails.application.routes.draw do
     get :search_username, on: :collection
     get :search_tag, on: :collection
   end
+  resources :reiatus, only: %i[create destroy]
 end
