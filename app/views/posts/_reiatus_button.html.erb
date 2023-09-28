@@ -1,0 +1,7 @@
+<% if current_user.reiatu?(post) %>
+  <%# いいねしている場合 %>
+  <%= render 'posts/unreiatu', post: post %>
+<% else %>
+  <%# いいねしていない場合 %>
+  <%= render 'posts/reiatu', post: post %>
+<% end %>
