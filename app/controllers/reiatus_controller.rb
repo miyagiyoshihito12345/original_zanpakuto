@@ -18,7 +18,4 @@ class ReiatusController < ApplicationController
       locals: { post: post }
     )
   end
-
-  def before_login
-  end
 end

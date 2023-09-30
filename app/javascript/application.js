@@ -6,3 +6,14 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
+document.addEventListener('DOMContentLoaded', () => {
+	console.log('DOMContentLoaded');
+
+	const buttons = document.querySelectorAll('.button');
+
+	buttons.forEach(button => {
+		button.addEventListener('click', () => {
+			alert("ログイン後にいいね機能が使えます");
+		});
+	});
+});
