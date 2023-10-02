@@ -17,7 +17,7 @@
           <%= link_to t('profiles.show.title'), profiles_path, class: 'nav-link text-white', style: 'font-family: serif;' %>
         </li>
         <li class="nav-item">
-          <%= link_to t('defaults.logout'), logout_path, class: 'nav-link text-white', data: { turbo_method: :delete, turbo_confirm: "ログアウトしますか？" }, style: 'font-family: serif;' %>
+          <%= link_to t('defaults.logout'), logout_path, class: 'nav-link text-white', data: { turbo: true, turbo_method: :delete, turbo_confirm: "ログアウトしますか？" }, style: 'font-family: serif;' %>
         </li>
       </ul>
     </div>
