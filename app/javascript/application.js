@@ -6,4 +6,12 @@
 Turbo.session.drive = false
 import "@hotwired/turbo-rails"
 import "controllers"
-import './custom/reiatu_alert'
+'use strict';
+
+const buttons = document.querySelectorAll('.button');
+
+buttons.forEach(button => {
+	button.addEventListener('click', () => {
+		alert("ログイン後にいいね機能が使えます");              
+	});    
+});
