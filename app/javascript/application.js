@@ -8,7 +8,7 @@ import "@hotwired/turbo-rails"
 import "controllers"
 'use strict';
 
-const buttons = document.querySelectorAll('.button');
+const buttons = document.querySelectorAll('.before-button');
 
 buttons.forEach(button => {
 	button.addEventListener('click', () => {

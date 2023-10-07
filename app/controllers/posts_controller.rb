@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :require_login, only: %i[index show search search_shikai search_bankai search_username]
+  skip_before_action :require_login, only: %i[index show search search_shikai search_bankai search_username index_new_order index_edit_order]
   layout 'layouts/autocomplete', only: %i[ search_shikai search_bankai search_username search_tag ]
 
   def index
