@@ -4,14 +4,10 @@
       <div class="post-item-img">
         <%= image_tag post.image.url, class: 'card-img-top', style: 'width: 100%; height: 100%;', alt: "オリジナル斬魄刀の画像" %>
       </div>
-      <% if current_user&.own?(post) %>
-        <%= render 'posts/crud_menus', post: post %>
-      <% else %>
-        <div style="align-items: center; display: flex;" class="mt-1 ms-2">
-          <%= image_tag post.user.avatar.url, class: 'rounded-circle', size: '30x30', alt: "アバター" %>
-          <div class="ms-2"><%= post.user.name %></div>
-        </div>
-      <% end %>
+      <div style="align-items: center; display: flex;" class="mt-1 ms-2">
+        <%= image_tag post.user.avatar.url, class: 'rounded-circle', size: '30x30', alt: "アバター" %>
+        <div class="ms-2"><%= post.user.name %></div>
+      </div>
     </div>
     <div class="col-md-8">
       <div class="card-body p-2 ps-1">
@@ -38,7 +34,7 @@
         <h5 class="card-title mb-1">
           【<%= t('posts.show.shikai') %>】
           <ruby>
-            <%= link_to post.shikai, post_path(post) %>
+            <%= link_to post.shikai, post_path(post), data: { turbo: false } %>
             <rt><%= post.shikai_hurigana %></rt>
           </ruby>
         </h5>

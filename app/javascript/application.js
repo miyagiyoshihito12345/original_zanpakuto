@@ -15,3 +15,13 @@ buttons.forEach(button => {
 		alert("ログイン後にいいね機能が使えます");              
 	});    
 });
+
+document.getElementById('js-active-new').addEventListener('click', function() {
+	document.getElementById('js-active-edit').classList.remove('active');
+	this.classList.add('active');
+});
+
+document.getElementById('js-active-edit').addEventListener('click', function() {
+	document.getElementById('js-active-new').classList.remove('active');
+	this.classList.add('active');
+});

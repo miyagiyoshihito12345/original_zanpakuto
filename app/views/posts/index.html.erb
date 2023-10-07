@@ -15,16 +15,13 @@
 <%= render 'shared/search' %>
 <h3 id="post" style="text-align: center;" class="mt-5 mb-3"><%= t('.title') %></h3>
 <div class="container pt-3">
+<div class="btn-group mb-3" role="group" aria-label="Basic outlined example">
+  <%= link_to "新着順", index_new_order_posts_path, class: "active btn btn-outline-dark", id: "js-active-new", type: "button", data: { turbo: true, turbo_method: :get } %>
+  <%= link_to "更新順", index_edit_order_posts_path, class: "btn btn-outline-dark", id: "js-active-edit", type: "button", data: { turbo: true, urbo_method: :get } %>
+</div>
   <div class="row">
     <div class="col-12">
-      <div class="row" style="justify-content: space-around;">
-        <% if @posts.present? %>
-          <%= render @posts %>
-        <% else %>
-          <p class="text-center"><%= t('.no_result') %></p>
-        <% end %>
-      </div>
-      <%= paginate @posts %>
+      <%= render 'posts/index_order', posts: @posts %>
     </div>
   </div>
 </div>

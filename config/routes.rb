@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resource :profiles, only: %i[show edit update]
   resources :posts do
+    get :index_new_order, on: :collection
+    get :index_edit_order, on: :collection
     get :search_shikai, on: :collection
     get :search_bankai, on: :collection
     get :search_username, on: :collection
