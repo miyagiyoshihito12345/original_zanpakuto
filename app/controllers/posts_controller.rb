@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
-  skip_before_action :require_login, only: %i[index show search search_shikai search_bankai search_username]
+  skip_before_action :require_login, only: %i[index show search search_shikai search_bankai search_username index_new_order index_edit_order]
   layout 'layouts/autocomplete', only: %i[ search_shikai search_bankai search_username search_tag ]
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = Post.where(is_draft: false).includes(:user).order(updated_at: :desc).page(params[:page])
+    @posts = Post.where(is_draft: false).includes(:user).order(created_at: :desc).page(params[:page])
   end 
 
   def search
@@ -21,6 +21,25 @@ class PostsController < ApplicationController
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true).where(is_draft: false).includes(:user).order(updated_at: :desc).page(params[:page])
   end
+
+  def index_new_order
+    posts= Post.where(is_draft: false).includes(:user).order(created_at: :desc).page(params[:page])
+    render turbo_stream: turbo_stream.replace(
+      "js-index-order",
+      partial: 'posts/index_order',
+      locals: { posts: posts }
+    )   
+  end
+
+  def index_edit_order
+    posts= Post.where(is_draft: false).includes(:user).order(updated_at: :desc).page(params[:page])
+    render turbo_stream: turbo_stream.replace(
+      "js-index-order",
+      partial: 'posts/index_order',
+      locals: { posts: posts }
+    )   
+  end
+
   def search_shikai
     @posts = Post.where("shikai like ?", "%#{params[:q]}%").where(is_draft: false)
   end
