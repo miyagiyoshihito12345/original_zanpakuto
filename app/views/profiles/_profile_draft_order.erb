@@ -1,0 +1,12 @@
+<%= turbo_frame_tag "js-draft-post-order", frame: posts do %>
+  <div class="row" style="justify-content: space-around;">
+    <% if posts.present? %>
+      <% posts.each do |post| %>
+        <%= render partial: 'posts/post', locals: { post: post } %>
+      <% end %>
+    <% else %>
+      <p class="text-center"><%= t('defaults.message.profile_mydraft_no_result') %></p>
+    <% end %>
+  </div>
+<% end %>
+
