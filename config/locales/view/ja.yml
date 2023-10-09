@@ -28,6 +28,8 @@ ja:
       draft_updated: '下書きを更新しました'
       draft_not_updated: '下書きを更新できませんでした'
       deleted: '削除しました'
+      profile_mypost_no_result: '自分の投稿はありません'
+      profile_mydraft_no_result: '下書きはありません'
   users:
     new:
       title: 'ユーザー登録'
@@ -70,13 +72,11 @@ ja:
       no_result: '検索結果はありません'
   profiles:
     show:
-      my_post_title: '自分の投稿'
+      my_post: '自分の投稿'
       title: 'マイページ'
       profile_edit_btn: '編集'
       name: 'ユーザー名'
       email: 'メールアドレス'
-      post_no_result: '自分の投稿はありません'
-      no_result: '下書きはありません'
-      draft_title: '下書き'
+      draft: '下書き'
     edit:
       title: 'プロフィール編集'

@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   get 'search', to: 'posts#search'
 
   resources :users, only: %i[new create]
-  resource :profiles, only: %i[show edit update]
+  resource :profiles, only: %i[show edit update] do
+    get :my_post_order, on: :collection
+    get :my_draft_order, on: :collection
+  end
   resources :posts do
     get :index_new_order, on: :collection
     get :index_edit_order, on: :collection

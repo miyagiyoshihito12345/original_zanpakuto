@@ -2,8 +2,25 @@ class ProfilesController < ApplicationController
   before_action :set_user, only: %i[edit update]
 
   def show
-    @posts = current_user.posts.where(is_draft: true).order(created_at: :desc)
     @myposts = current_user.posts.where(is_draft: false).order(created_at: :desc)
+  end
+
+  def my_post_order
+    posts = current_user.posts.where(is_draft: false).order(created_at: :desc)
+    render turbo_stream: turbo_stream.replace(
+      "js-draft-post-order",
+      partial: 'profiles/profile_order',
+      locals: { posts: posts }
+    )   
+  end
+
+  def my_draft_order
+    posts = current_user.posts.where(is_draft: true).order(created_at: :desc)
+    render turbo_stream: turbo_stream.replace(
+      "js-my-post-order",
+      partial: 'profiles/profile_draft_order',
+      locals: { posts: posts }
+    )   
   end
 
   def edit;end
