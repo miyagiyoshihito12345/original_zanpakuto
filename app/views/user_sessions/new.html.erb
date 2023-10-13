@@ -2,12 +2,12 @@
   <div class="row">
     <div class=" col-md-10 offset-md-1 col-lg-8 offset-lg-2">
       <h1><%= t('.title') %></h1>
-      <div class="mt-4">
+<%#      <div class="mt-4">
         <%= link_to auth_at_provider_path(provider: :twitter), class: 'btn text-white', style: 'background-color: #3399FF;' do %>
-          <i class="fa fa-twitter me-1 test-white" aria-hidden="true"></i>でログイン
+      <%#    <i class="fa fa-twitter me-1 test-white" aria-hidden="true"></i>でログイン
         <% end %>
-      </div>
-      <hr>
+    <%#  </div>
+      <hr> %>
       <%= form_with url: login_path, local: true do |f| %>
         <div class="form-group mt-4">
           <%= f.label :email, User.human_attribute_name(:email) %>
