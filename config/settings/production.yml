@@ -1,0 +1,6 @@
+default_url_options:
+  protcol: 'https'
+  host: 'www.originalzanpakuto.com'
+
+sorcery:
+  callback_url: "https://www.originalzanpakuto.com/oauth/callback?provider=twitter"

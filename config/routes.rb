@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
   get 'search', to: 'posts#search'
 
+  post "oauth/callback", to: "oauths#callback"
+  get "oauth/callback", to: "oauths#callback"
+  get "oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
+
   resources :users, only: %i[new create]
   resource :profiles, only: %i[show edit update] do
     get :my_post_order, on: :collection

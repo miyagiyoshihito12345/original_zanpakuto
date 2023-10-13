@@ -14,6 +14,7 @@ module OriginalZanpakuto
     config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.{rb,yml}').to_s]
     config.time_zone = "Tokyo"
     config.active_record.default_timezone = :local
+    config.action_controller.raise_on_open_redirects = false
 
     # Configuration for the application, engines, and railties goes here.
     #

@@ -3,6 +3,9 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :reiatus, dependent: :destroy 
   has_many :reiatu_posts, through: :reiatus, source: :post
+  has_many :authentications, dependent: :destroy
+
+  accepts_nested_attributes_for :authentications
 
   def self.ransackable_attributes(auth_object = nil)
     ["name"]
