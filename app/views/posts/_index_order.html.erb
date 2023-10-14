@@ -1,11 +1,7 @@
 <%= turbo_frame_tag "js-index-order", frame: posts do %>
   <div class="row" style="justify-content: space-around;">
-    <% if posts.present? %>
-      <% posts.each do |post| %>
-        <%= render partial: 'posts/post', locals: { post: post } %>
-      <% end %>
-    <% else %>
-      <p class="text-center"><%= t('.no_result') %></p>
+    <% posts.each do |post| %>
+      <%= render partial: 'posts/post', locals: { post: post } %>
     <% end %>
   </div>
   <%= paginate posts %>

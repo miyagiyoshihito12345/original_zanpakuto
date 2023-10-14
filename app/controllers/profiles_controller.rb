@@ -8,9 +8,9 @@ class ProfilesController < ApplicationController
   def my_post_order
     posts = current_user.posts.where(is_draft: false).order(created_at: :desc)
     render turbo_stream: turbo_stream.replace(
-      "js-draft-post-order",
+      "js-my-post-order",
       partial: 'profiles/profile_order',
-      locals: { posts: posts }
+      locals: { posts: posts, my_post: '自分の投稿' }
     )   
   end
 
@@ -18,8 +18,17 @@ class ProfilesController < ApplicationController
     posts = current_user.posts.where(is_draft: true).order(created_at: :desc)
     render turbo_stream: turbo_stream.replace(
       "js-my-post-order",
-      partial: 'profiles/profile_draft_order',
-      locals: { posts: posts }
+      partial: 'profiles/profile_order',
+      locals: { posts: posts, my_post: '下書き' }
+    )   
+  end
+  
+  def my_reiatu_order
+    posts = current_user.reiatu_posts.order(created_at: :desc)
+    render turbo_stream: turbo_stream.replace(
+      "js-my-post-order",
+      partial: 'profiles/profile_order',
+      locals: { posts: posts, my_post: 'いいねした投稿' }
     )   
   end
 

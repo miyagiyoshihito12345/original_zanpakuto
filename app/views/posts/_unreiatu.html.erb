@@ -1,5 +1,8 @@
-<%= turbo_frame_tag "entry-unreiatus-#{post.id}", frame: post do %>
-  <%= link_to reiatu_path(current_user.reiatus.find_by(post_id: post.id)), style: 'color: #026CE8; text-decoration:none;', class: 'me-4', data: { turbo_method: :delete } do %>
+<%= turbo_frame_tag "entry-unreiatus-#{post.id}", class: 'me-4', frame: post do %>
+  <%= link_to reiatu_path(current_user.reiatus.find_by(post_id: post.id)), style: 'color: #026CE8; text-decoration:none;', data: { turbo_method: :delete } do %>
     <i class="fa fa-thumbs-up me-1" aria-hidden="true"></i>霊圧
   <% end %>
+  <span style="color: #026CE8;">
+    <%= post.reiatus.count %>
+  </span>
 <% end %>
