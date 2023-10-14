@@ -13,10 +13,12 @@ Rails.application.routes.draw do
   resource :profiles, only: %i[show edit update] do
     get :my_post_order, on: :collection
     get :my_draft_order, on: :collection
+    get :my_reiatu_order, on: :collection
   end
   resources :posts do
     get :index_new_order, on: :collection
     get :index_edit_order, on: :collection
+    get :index_reiatu_order, on: :collection
     get :search_shikai, on: :collection
     get :search_bankai, on: :collection
     get :search_username, on: :collection

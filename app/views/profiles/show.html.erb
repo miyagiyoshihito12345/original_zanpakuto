@@ -19,7 +19,8 @@
       </table>
       <div class="btn-group mb-3" role="group" aria-label="Basic outlined example">
         <%= link_to t('.my_post'), my_post_order_profiles_path, class: "active btn btn-outline-dark", id: "js-active-new", data: { turbo: true, turbo_method: :get } %>
-        <%= link_to t('.draft'), my_draft_order_profiles_path, class: "btn btn-outline-dark", id: "js-active-edit", data: { turbo: true, urbo_method: :get } %>
+        <%= link_to '霊圧', my_reiatu_order_profiles_path, class: "btn btn-outline-dark", id: "js-active-reiatu", data: { turbo: true, turbo_method: :get } %>
+        <%= link_to t('.draft'), my_draft_order_profiles_path, class: "btn btn-outline-dark", id: "js-active-edit", data: { turbo: true, turbo_method: :get } %>
       </div>
       <div class="col-12">
         <%= render 'profiles/profile_order', posts: @myposts %>

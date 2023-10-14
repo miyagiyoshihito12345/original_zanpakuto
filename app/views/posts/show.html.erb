@@ -11,11 +11,6 @@
       </div>
       <%= render 'crud_menus', post: @post if current_user&.own?(@post) %>
       <div style="display: flex; justify-content: flex-end; align-items: center;">
-        <% if logged_in? %>  
-          <%= render 'posts/reiatus_button', post: @post if @post.is_draft == false %>
-        <% else %>
-          <%= render 'posts/before_login_reiatus_button' %>
-        <% end %>
         <% if @post.is_draft == false %>
           <% if @post.shikai_hurigana.present? %>
             <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【斬魄刀】%0a#{ @post.shikai }(#{ @post.shikai_hurigana })%0a%0aオリジナル斬魄刀をシェアします！%0a%23BLEACH%20%20%23BLEACH_anime%20%20%23オリジナル斬魄刀投稿サイト%20", target: '_blank' do %>

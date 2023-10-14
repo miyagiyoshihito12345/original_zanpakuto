@@ -17,7 +17,8 @@
 <div class="container pt-3">
 <div class="btn-group mb-3" role="group" aria-label="Basic outlined example">
   <%= link_to "新着順", index_new_order_posts_path, class: "active btn btn-outline-dark", id: "js-active-new", data: { turbo: true, turbo_method: :get } %>
-  <%= link_to "更新順", index_edit_order_posts_path, class: "btn btn-outline-dark", id: "js-active-edit", data: { turbo: true, urbo_method: :get } %>
+  <%= link_to "更新順", index_edit_order_posts_path, class: "btn btn-outline-dark", id: "js-active-edit", data: { turbo: true, turbo_method: :get } %>
+  <%= link_to "人気順", index_reiatu_order_posts_path, class: "btn btn-outline-dark", id: "js-active-reiatu", data: { turbo: true, turbo_method: :get } %>
 </div>
   <div class="row">
     <div class="col-12">

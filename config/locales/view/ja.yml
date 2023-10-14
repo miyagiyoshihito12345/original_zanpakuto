@@ -54,7 +54,6 @@ ja:
   posts:
     index:
       title: '投稿一覧'
-      no_result: 'まだ投稿はありません'
     new:
       title: '投稿する'
     show:

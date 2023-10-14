@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :require_login, only: %i[index show search search_shikai search_bankai search_username index_new_order index_edit_order]
+  skip_before_action :require_login, only: %i[index show search search_shikai search_bankai search_username index_new_order index_edit_order index_reiatu_order]
   layout 'layouts/autocomplete', only: %i[ search_shikai search_bankai search_username search_tag ]
 
   def index
@@ -33,6 +33,19 @@ class PostsController < ApplicationController
 
   def index_edit_order
     posts= Post.where(is_draft: false).includes(:user).order(updated_at: :desc).page(params[:page])
+    render turbo_stream: turbo_stream.replace(
+      "js-index-order",
+      partial: 'posts/index_order',
+      locals: { posts: posts }
+    )   
+  end
+
+  def index_reiatu_order
+    posts = Post.where(is_draft: false).includes(:user)
+      .select('posts.*, COUNT(reiatus.post_id) AS reiatus_count')
+      .left_joins(:reiatus)
+      .group('posts.id')
+      .order('reiatus_count DESC').page(params[:page])
     render turbo_stream: turbo_stream.replace(
       "js-index-order",
       partial: 'posts/index_order',

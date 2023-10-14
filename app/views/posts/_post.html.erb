@@ -52,7 +52,7 @@
           <% if logged_in? %> 
             <%= render 'posts/reiatus_button', post: post if post.is_draft == false %>
           <% else %>
-            <%= render 'posts/before_login_reiatus_button' %>
+            <%= render 'posts/before_login_reiatus_button', post: post %>
           <% end %>
           <% if post.is_draft == false %>
             <% if post.shikai_hurigana.present? %>

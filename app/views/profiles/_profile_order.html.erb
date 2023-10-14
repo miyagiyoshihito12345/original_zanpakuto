@@ -5,7 +5,11 @@
         <%= render partial: 'posts/post', locals: { post: post } %>
       <% end %>
     <% else %>
-      <p class="text-center"><%= t('defaults.message.profile_mypost_no_result') %></p>
+      <% if defined?(my_post) %>
+        <p class="text-center"><%= "#{ my_post }はありません。"%></p>
+      <% else %>
+        <p class="text-center">自分の投稿はありません。</p>
+      <% end %>
     <% end %>
   </div>
 <% end %>
