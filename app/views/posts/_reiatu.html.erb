@@ -2,8 +2,10 @@
   <%= link_to reiatus_path(post_id: post.id), style: 'color: #026CE8; text-decoration:none;', data: { turbo_method: :post } do %>
     <i class="fa fa-thumbs-o-up me-1" aria-hidden="true"></i>霊圧
   <% end %>
-  <span style="color: #026CE8;">
-    <%= post.reiatus.count %>
-  </span>
+  <% if post.reiatus.count != 0 %>
+    <span style="color: #026CE8;">
+      <%= post.reiatus.count %>
+    </span>
+  <% end %>
 <% end %>
 
