@@ -1,0 +1,5 @@
+<h3>好きな漢字を一文字入力して下さい</h3>
+<%= form_with(url: ai_generate_path, method: :get) do |form| %>
+  <%= form.text_field :text, size: 75 %>
+  <%= form.submit "AIに斬魄刀を作ってもらう" %>
+<% end %>
