@@ -58,6 +58,7 @@ gem "meta-tags"
 gem "font-awesome-rails"
 gem 'sitemap_generator'
 gem 'acts-as-taggable-on', '~> 9.0'
+gem "ruby-openai"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
