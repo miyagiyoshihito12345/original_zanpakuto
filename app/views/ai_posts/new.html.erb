@@ -1,0 +1,87 @@
+<div class="container pt-3">
+  <div class="row">
+    <h1 class="text-center">AIで創る</h1>
+    <div class="col-lg-10 offset-lg-1">
+      <h2 style="font-size: 20px;" class="fw-bold text-center">↓斬魄刀の情報を入力して下さい↓</h2>
+      <%= form_with(url: ai_generate_path, method: :get) do |form| %>
+        <div class="form-group mt-4">
+          <%= form.label :ability, '斬魄刀の能力は？【必須】', style: 'font-size: 20px;' %><br>
+          <div class="row">
+            <% ['氷雪系', '炎熱系', '雷系', '流水系', '幻覚・催眠系', '鬼道系', '直接攻撃系', '生物系', '特殊能力系'].each_with_index do |ability, index| %>
+              <% option_id = "ability#{index + 1}" %>
+              <% label_id = "label_ability#{index + 1}" %>
+              <div class="col-md-4 col-sm-6 mt-3">
+                <%= form.radio_button :ability, ability, id: option_id, class: 'btn-check', autocomplete: 'off' %>
+                <%= form.label option_id, class: 'btn fw-bold btn-outline-dark', for: option_id, style: 'width: 100%;' do %>
+                  <%= ability %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="form-group mt-4">
+          <%= form.label :atmosphere, '雰囲気は？【必須】', style: 'font-size: 20px;' %><br>
+          <div class="row">
+            <% ['カッコいい系', 'オサレ系', 'エモい系', '不気味系', 'チート系', '超最強チート系'].each_with_index do |atmosphere, index| %>
+              <% option_id = "atmosphere#{index + 1}" %>
+              <% label_id = "label_atmosphere#{index + 1}" %>
+              <div class="col-md-4 col-sm-6 mt-3">
+                <%= form.radio_button :atmosphere, atmosphere, id: option_id, class: 'btn-check', autocomplete: 'off' %>
+                <%= form.label option_id, class: 'btn fw-bold btn-outline-dark', for: option_id, style: 'width: 100%;' do %>
+                  <%= atmosphere %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="form-group mt-4">
+          <%= form.label :bankai, '「卍解」の言い方は？【必須】', style: 'font-size: 20px;' %><br>
+          <div class="row">
+            <% ['卍解！', '卍ｯｯ!!解ｯｯ!!', '.....卍解！', '....卍....解....', '卍解______', '卍解ィィ!!!!!'].each_with_index do |bankai, index| %>
+              <% option_id = "bankai#{index + 1}" %>
+              <% label_id = "label_bankai#{index + 1}" %>
+              <div class="col-md-4 col-sm-6 mt-3">
+                <%= form.radio_button :bankai, bankai, id: option_id, class: 'btn-check', autocomplete: 'off' %>
+                <%= form.label option_id, class: 'btn fw-bold btn-outline-dark', for: option_id, style: 'width: 100%;' do %>
+                  <%= bankai %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div> 
+        <div class="form-group mt-4">
+          <%= form.label :kangi_text, '好きな漢字を一文字入力して下さい。【必須】', style: 'font-size: 20px;' %><br>
+          <%= form.text_field :kangi_text, class: 'form-control mt-3', style: 'width: 200px;', placeholder: '優' %>
+          <p style="font-size: 12px;">※この漢字が始解名、卍解名に含まれます。</p>
+        </div>
+        <div class="form-group mt-4">
+          <%= form.label :meigen, 'BLEACHの好きな名言は？【任意】', style: 'font-size: 20px;' %><br>
+          <div class="row">
+            <% ['憧れは、理解から最も遠い感情だよ',
+                'あまり強い言葉を遣うなよ、弱く見えるぞ',
+                '戦争なんて始めた瞬間からどっちも悪だよ',
+                '乱菊が泣かんでも済むようにしたる',
+                '5回とも、同じ人を好きになる',
+                '貴様が、私の誇りに刃を向けたからだ',
+                '奇跡は一度、だったよな？じゃあ二度目は何だ？',
+                'これが…そうか…この掌(てのひら)にあるものが…心か']
+              .each_with_index do |meigen, index| %>
+              <% option_id = "meigen#{index + 1}" %>
+              <% label_id = "label_meigen#{index + 1}" %>
+              <div class="col-md-6 col-sm-12 mt-3">
+                <%= form.radio_button :meigen, meigen, id: option_id, class: 'btn-check', autocomplete: 'off' %>
+                <%= form.label option_id, class: 'btn fw-bold btn-outline-dark', for: option_id, style: 'width: 100%' do %>
+                  <%= meigen %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: center; margin-top: 50px;">
+        <%= form.submit "AIに斬魄刀を作ってもらう", class: 'btn btn-dark' %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
