@@ -20,7 +20,7 @@ class AiPostsController < ApplicationController
       parameters: {
         model: "gpt-4",
         messages: [
-          { role: "system", content: "質問には漢字で答えてください。漢字の横に()でふりがなを添えて下さい。" },
+          { role: "system", content: "質問には漢字で答えてください。漢字の横に()でふりがなを添えて下さい。解答例は、氷輪丸(ひょうりんまる)です" },
           { role: "user", content: @shikai },
         ],
         temperature: 1,
@@ -33,7 +33,7 @@ class AiPostsController < ApplicationController
       parameters: {
         model: "gpt-4",
         messages: [
-          { role: "system", content: "質問には漢字で答えてください。漢字の横に()でふりがなを添えて下さい。" },
+          { role: "system", content: "質問には漢字で答えてください。漢字の横に()でふりがなを添えて下さい。解答例は、氷輪丸(ひょうりんまる)です" },
           { role: "user", content: @bankai },
         ],                
         temperature: 1,
