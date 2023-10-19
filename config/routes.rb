@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
   get 'search', to: 'posts#search'
-  get 'ai_new', to: 'ai_posts#ai_new'
   get 'ai_generate', to: 'ai_posts#ai_generate'
+  get 'aaaaa', to: 'ai_posts#aaaaa'
 
   resources :users, only: %i[new create]
   resource :profiles, only: %i[show edit update] do
@@ -27,5 +27,5 @@ Rails.application.routes.draw do
     get :search_tag, on: :collection
   end
   resources :reiatus, only: %i[create destroy]
-  resources :ai_posts, only: %i[ index ]
+  resources :ai_posts, only: %i[ new ]
 end
