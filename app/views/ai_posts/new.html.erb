@@ -3,7 +3,7 @@
     <h1 class="text-center">AIで創る</h1>
     <div class="col-lg-10 offset-lg-1">
       <h2 style="font-size: 20px;" class="fw-bold text-center">↓斬魄刀の情報を入力して下さい↓</h2>
-      <%= form_with(url: ai_generate_path, method: :get) do |form| %>
+      <%= form_with(url: ai_generate_path, method: :post) do |form| %>
         <div class="form-group mt-4">
           <%= form.label :ability, '斬魄刀の能力は？【必須】', style: 'font-size: 20px;' %><br>
           <div class="row">
@@ -50,11 +50,6 @@
           </div>
         </div> 
         <div class="form-group mt-4">
-          <%= form.label :kangi_text, '好きな漢字を一文字入力して下さい。【必須】', style: 'font-size: 20px;' %><br>
-          <%= form.text_field :kangi_text, class: 'form-control mt-3', style: 'width: 200px;', placeholder: '優' %>
-          <p style="font-size: 12px;">※この漢字が始解名、卍解名に含まれます。</p>
-        </div>
-        <div class="form-group mt-4">
           <%= form.label :meigen, 'BLEACHの好きな名言は？【任意】', style: 'font-size: 20px;' %><br>
           <div class="row">
             <% ['憧れは、理解から最も遠い感情だよ',
@@ -62,7 +57,7 @@
                 '戦争なんて始めた瞬間からどっちも悪だよ',
                 '乱菊が泣かんでも済むようにしたる',
                 '5回とも、同じ人を好きになる',
-                '貴様が、私の誇りに刃を向けたからだ',
+                '貴様が私の誇りに刃を向けたからだ',
                 '奇跡は一度、だったよな？じゃあ二度目は何だ？',
                 'これが…そうか…この掌(てのひら)にあるものが…心か']
               .each_with_index do |meigen, index| %>
@@ -77,8 +72,13 @@
             <% end %>
           </div>
         </div>
+        <div class="form-group mt-4">
+          <%= form.label :kangi_text, '好きな漢字を一文字入力して下さい。【必須】', style: 'font-size: 20px;' %><br>
+          <%= form.text_field :kangi_text, class: 'form-control mt-3', style: 'width: 200px;', placeholder: '優' %>
+          <p style="font-size: 12px;">※この漢字が始解名、卍解名に含まれます。</p>
+        </div>
         <div style="display: flex; justify-content: center; margin-top: 50px;">
-        <%= form.submit "AIに斬魄刀を作ってもらう", class: 'btn btn-dark' %>
+          <%= form.submit "AIに斬魄刀を作ってもらう", class: 'btn btn-dark' %>
         </div>
       <% end %>
 
