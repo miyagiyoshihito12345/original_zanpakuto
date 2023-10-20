@@ -70,7 +70,7 @@
     </div>
   </div>
   <div style="display: flex; justify-content: space-around; margin-top: 50px;">
-    <% if 'new' == action_name || post.is_draft == true || 'create' == action_name %>
+    <% if 'new' == action_name || post.is_draft == true || 'create' == action_name || 'new_ai' == action_name %>
       <%= f.submit t('defaults.draft'), class: 'btn btn-dark' %>
     <% end %>
     <% if 'edit' == action_name && post.is_draft == false %>

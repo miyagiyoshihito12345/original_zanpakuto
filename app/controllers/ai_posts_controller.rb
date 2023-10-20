@@ -1,12 +1,17 @@
 class AiPostsController < ApplicationController
-
+  skip_before_action :require_login, only: %i[new ai_generate]
+  before_action :ai_validation, only: %i[ ai_generate ]
   def new; end
   def aaaaa
     render :ai_generate
   end
 
+  def new_ai
+    @post = current_user.posts.build(post_params)
+    @post.tag_list = @post.tag_list.first.split(" ")
+  end
+
   def ai_generate
-    ai_validation
     @ability = params[:ability]
     @atmosphere = params[:atmosphere]
     @bankai_say = params[:bankai]
@@ -47,13 +52,28 @@ class AiPostsController < ApplicationController
       @bankai = match_data[1]  # 漢字部分
       @bankai_hurigana = match_data[2]  # ふりがな部分
     end
+    if logged_in?
+      @post = current_user.posts.build(shikai: @shikai, shikai_hurigana: @shikai_hurigana, ability: "#{@ability}の斬魄刀です。", bankai: @bankai, bankai_hurigana: @bankai_hurigana, detail: @meigen, tag_list: Array[@ability,@atmosphere,@bankai_say])
+    else
+      @post = Post.new(shikai: @shikai, shikai_hurigana: @shikai_hurigana, bankai: @bankai, bankai_hurigana: @bankai_hurigana, detail: @meigen)
     end
+  end
 
-    private
+  private
 
-    def ai_validation
-      return if params[:ability].present? && params[:atmosphere].present? && params[:bankai].present? && params[:kangi_text].present?
+  def ai_validation
+    if params[:ability].present? && params[:atmosphere].present? && params[:bankai].present? && params[:kangi_text].present?
+      return if params[:kangi_text].match?(/\p{Han}/) && params[:kangi_text].length == 1
+      flash.now['danger'] = '一文字の漢字を入力して下さい'
+      render :new, status: :unprocessable_entity
+    else
       flash.now['danger'] = '必須項目に回答してください'
       render :new, status: :unprocessable_entity
     end
   end
+
+  def post_params
+    params.require(:post).permit(:kaigo, :kaigo_hurigana, :shikai, :shikai_hurigana, :ability, :bankai, :bankai_hurigana, :detail, :tag_list)
+  end 
+
+end

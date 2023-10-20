@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
   get 'search', to: 'posts#search'
-  get 'ai_generate', to: 'ai_posts#ai_generate'
+  post 'ai_generate', to: 'ai_posts#ai_generate'
   get 'aaaaa', to: 'ai_posts#aaaaa'
+  get 'new_ai', to: 'ai_posts#new_ai'
 
   resources :users, only: %i[new create]
   resource :profiles, only: %i[show edit update] do

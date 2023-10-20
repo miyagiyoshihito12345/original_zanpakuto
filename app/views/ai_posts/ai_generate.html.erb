@@ -28,7 +28,32 @@
           <td><%= @meigen %></td>
         </tr>
       </table>
-      <%= link_to '入力ページに戻る', new_ai_post_path %>
+      <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+        <%= link_to "https://twitter.com/share?url=
+        #{ root_url }&text=【始解】#{ @post.shikai }#{ @post.shikai_hurigana.present? ? '('+@post.shikai_hurigana+')' : '' }
+         %0a#{ '【卍解】'+@post.bankai if @post.bankai.present? }#{ @post.bankai_hurigana.present? ? '('+@post.bankai_hurigana+')' : '' }
+         %0a%0a#{@post.detail}
+         %0a%23BLEACH%20%20%0a%23BLEACH_anime%20%20%0a%23オリジナル斬魄刀%20%20%0a%23オリジナル斬魄刀投稿サイト%20%0a",
+         target: '_blank', class: 'btn btn-dark mt-2' do %>
+           Twitterでシェアする
+         <% end %>  
+         <% if logged_in? %>
+         <%= form_with model: @post, url: new_ai_path, method: :get, local: true do |f| %>
+           <%= f.hidden_field :shikai %>
+           <%= f.hidden_field :shikai_hurigana %>
+           <%= f.hidden_field :ability %>
+           <%= f.hidden_field :bankai %>
+           <%= f.hidden_field :bankai_hurigana %>
+           <%= f.hidden_field :detail %>
+           <%= f.hidden_field :tag_list %>
+           <%= f.submit "内容を保存or編集or投稿する", class: "mt-2 complete-btn btn btn-dark" %>
+         <% end %>
+       <% end %>
+         <%= link_to 'もう一度AIで創る', new_ai_post_path, class: 'mt-2 btn btn-dark' %>
+      </div>
+         <% unless logged_in? %>
+           <p class="text-center mt-2"><%= link_to 'ログイン', login_path %>すると斬魄刀の内容を保存したり投稿、編集したりすることができます。</p>
+         <% end %>
     </div>
   </div>
 </div>
