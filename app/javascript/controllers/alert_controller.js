@@ -11,21 +11,3 @@ export default class extends Controller {
 	}
 }
 
-document.getElementById('js-active-new').addEventListener('click', function() {
-	        document.getElementById('js-active-edit').classList.remove('active');
-	        document.getElementById('js-active-reiatu').classList.remove('active');
-	        this.classList.add('active');
-});
-
-document.getElementById('js-active-edit').addEventListener('click', function() {
-	        document.getElementById('js-active-new').classList.remove('active');
-	        document.getElementById('js-active-reiatu').classList.remove('active');
-	        this.classList.add('active');
-});
-
-document.getElementById('js-active-reiatu').addEventListener('click', function() {
-	        document.getElementById('js-active-new').classList.remove('active');
-	        document.getElementById('js-active-edit').classList.remove('active');
-	        this.classList.add('active');
-});
-
