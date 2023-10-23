@@ -10,3 +10,4 @@ export default class extends Controller {
 		}, 100); // 0.1秒後にフォームを実際に送信
 	}
 }
+
