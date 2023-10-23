@@ -33,3 +33,9 @@ document.getElementById('js-active-reiatu').addEventListener('click', function()
 	document.getElementById('js-active-edit').classList.remove('active');
 	this.classList.add('active');
 });
+document.addEventListener('turbo:submit-start', function() {
+		document.getElementById('create-button').classList.remove('visible');
+		document.getElementById('creating-message').classList.remove('disvisible');
+		document.getElementById('creating-message').classList.add('visible');
+		document.getElementById('create-button').classList.add('disvisible');
+});
