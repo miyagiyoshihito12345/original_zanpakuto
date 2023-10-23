@@ -13,12 +13,12 @@
       <div class="card-body p-2 ps-1">
         <%= render 'posts/tag_list', tag_list: post.tag_list %>
         <% if post.kaigo.present? %>
-          <% if post.kaigo.length > 9 %>
+          <% if post.kaigo.length > 16 %>
             <h5 class="mb-1 card-title" style="font-size: 16px;">
               【<%= t('posts.show.kaigo') %>】
               <ruby>
-                <%= post.kaigo %>
-                <rt><%= post.kaigo_hurigana %></rt>
+                <%= post.kaigo[0, 18]... %>
+                <rt><%= post.kaigo_hurigana[0, 25]... %></rt>
               </ruby>
             </h5>
           <% else %>
@@ -34,8 +34,13 @@
         <h5 class="card-title mb-1">
           【<%= t('posts.show.shikai') %>】
           <ruby>
-            <%= link_to post.shikai, post_path(post), data: { turbo: false } %>
-            <rt><%= post.shikai_hurigana %></rt>
+            <% if post.shikai.length > 10 %>
+              <%= link_to post.shikai[0, 10]..., post_path(post), data: { turbo: false } %>
+              <rt><%= post.shikai_hurigana[0, 20]... %></rt>
+            <% else %>
+              <%= link_to post.shikai, post_path(post), data: { turbo: false } %>
+              <rt><%= post.shikai_hurigana %></rt>
+            <% end %>
           </ruby>
         </h5>
         <p class="card-text mb-1"><small class="txt-limit text-dark"><%= post.ability %></small></p>
@@ -43,8 +48,13 @@
           <h5 class="card-title">
             【<%= t('posts.show.bankai') %>】
             <ruby>
-              <%= post.bankai %>
-              <rt><%= post.bankai_hurigana %></rt>
+              <% if post.bankai.length > 10 %>
+                <%= post.bankai[0, 10]... %>
+                <rt><%= post.bankai_hurigana[0, 20]... %></rt>
+              <% else %>
+                <%= post.bankai %>
+                <rt><%= post.bankai_hurigana %></rt>
+              <% end %>
             </ruby>
           </h5>
         <% end %>

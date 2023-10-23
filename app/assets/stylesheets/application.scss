@@ -50,10 +50,22 @@ a {
 	.top-page-detail {
 		font-size: 12px;
 	}
-.show-img {
-	width: 171px;
-	height: 153px;
-	margin-left: auto;
-	margin-right: auto;
+	.show-img {
+		width: 171px;
+		height: 153px;
+		margin-left: auto;
+		margin-right: auto;
+	}
 }
+
+.visible {
+	display: block;
 }
+.disvisible {
+	display: none;
+}
+button                  .show-when-disabled { display: none; }
+button[disabled]        .show-when-disabled { display: initial; }
+
+button                  .show-when-enabled { display: initial; }
+button[disabled]        .show-when-enabled { display: none; }
