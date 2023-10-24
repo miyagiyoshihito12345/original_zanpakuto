@@ -17,8 +17,8 @@ class AiPostsController < ApplicationController
     @bankai_say = params[:bankai]
     @meigen = params[:meigen]
     @kangi = params[:kangi_text]
-    @shikai = "日本刀の名前を考えて下さい。
-    能力は#{@ability}で、日本刀の雰囲気は#{@atmosphere}です。
+    @shikai = "斬魄刀の名前を考えて下さい。
+    能力は#{@ability}で、斬魄刀の雰囲気は#{@atmosphere}です。
     ただし、名前に#{@kangi}という漢字を含むようにして下さい。"
     @client = OpenAI::Client.new
     response = @client.chat(
@@ -31,14 +31,14 @@ class AiPostsController < ApplicationController
         temperature: 1,
       })
     @shikai = response.dig("choices", 0, "message", "content")
-    @bankai = "日本刀「#{@shikai}」の名前をもっとカッコよくした名前を考えて下さい。
-    能力は#{@ability}で、日本刀の雰囲気は#{@atmosphere}です。
+    @bankai = "斬魄刀「#{@shikai}」の卍解の名前を考えて下さい。
+    能力は#{@ability}で、斬魄刀の雰囲気は#{@atmosphere}です。
     ただし、名前に#{@kangi}という漢字を含むようにして下さい。"
     response = @client.chat(
       parameters: {
         model: "gpt-4",
         messages: [
-          { role: "system", content: "質問には漢字で答えてください。漢字の横に()でふりがなを添えて下さい。解答例は、氷輪丸(ひょうりんまる)です" },
+          { role: "system", content: "質問には漢字で答えてください。漢字の横に()でふりがなを添えて下さい。解答例は、大紅蓮氷輪丸(だいぐれんひょうりんまる)です" },
           { role: "user", content: @bankai },
         ],                
         temperature: 1,
@@ -63,7 +63,10 @@ class AiPostsController < ApplicationController
 
   def ai_validation
     if params[:ability].present? && params[:atmosphere].present? && params[:bankai].present? && params[:kangi_text].present?
-      return if params[:kangi_text].match?(/\p{Han}/) && params[:kangi_text].length == 1
+      if params[:kangi_text].match?(/\p{Han}/) && params[:kangi_text].length == 1
+        ai_count
+        return
+      end
       flash.now['danger'] = '一文字の漢字を入力して下さい'
       render :new, status: :unprocessable_entity
     else
@@ -75,5 +78,16 @@ class AiPostsController < ApplicationController
   def post_params
     params.require(:post).permit(:kaigo, :kaigo_hurigana, :shikai, :shikai_hurigana, :ability, :bankai, :bankai_hurigana, :detail, :tag_list)
   end 
+
+  def ai_count
+    if session[:count] == nil 
+      session[:count] = 1 
+    elsif session[:count] == 5
+      flash.now['danger'] = '一日5回までしか使えません'
+      render :new, status: :unprocessable_entity
+    else
+      session[:count] += 1
+    end
+  end
 
 end
