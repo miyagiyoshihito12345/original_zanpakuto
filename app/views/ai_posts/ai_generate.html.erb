@@ -1,11 +1,17 @@
+<div style="position: relative;">
+  <%= image_tag 'ai.webp', class: 'hoge', style: 'width: 100%; z-index: 2;', alt: "AI生成結果" %>
+  <%= image_tag 'ai_mobile.webp', class: 'smart_hoge', style: 'width: 100%; z-index: 2;', alt: "AI生成結果" %>
+  <div style="position: absolute; top: 50%; z-index: 3; left: 50%; transform: translate(-50%, -50%);">
+    <h1 class="text-center text-white h2 text-nowrap">あなたの斬魄刀は...</h1>
+    <div class="mt-3 text-center pe-4">
+      <p class="fw-bold h1 text-white text-nowrap">【始解】<ruby><%= @shikai %><rt><%= @shikai_hurigana if defined?(@shikai_hurigana) %></rt></ruby></p>
+      <p class="fw-bold h1 text-white text-nowrap">【卍解】<ruby><%= @bankai %><rt><%= @bankai_hurigana if defined?(@bankai_hurigana) %></rt></ruby></p>
+    </div>
+  </div>
+</div>
 <div class="container pt-3">
   <div class="row">
-    <h1 class="text-center">あなたの斬魄刀は...</h1>
     <div class="col-lg-10 offset-lg-1">
-      <div class="mt-3 mb-3">
-        <p class="fw-bold text-center h2">【始解】<ruby><%= @shikai %><rt><%= @shikai_hurigana if defined?(@shikai_hurigana) %></rt></ruby></p>
-        <p class="fw-bold text-center h2">【卍解】<ruby><%= @bankai %><rt><%= @bankai_hurigana if defined?(@bankai_hurigana) %></rt></ruby></p>
-      </div>
       <table class="table table-striped mt-3">
         <tr>
           <th>【能力】</th>
@@ -20,20 +26,20 @@
           <td><%= @bankai_say %></td>
         </tr>
         <tr>
-          <th>【好きな漢字】</th>
-          <td><%= @kangi %></td>
-        </tr>
-        <tr>
           <th>【名言】</th>
           <td><%= @meigen %></td>
         </tr>
+        <tr>
+          <th>【好きな漢字】</th>
+          <td><%= @kangi %></td>
+        </tr>
       </table>
-      <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+      <div style="display: flex; justify-content: space-around; flex-wrap: wrap;" class="mt-4 mb-4">
         <%= link_to "https://twitter.com/share?url=
         #{ root_url }&text=【始解】#{ @post.shikai }#{ @post.shikai_hurigana.present? ? '('+@post.shikai_hurigana+')' : '' }
          %0a#{ '【卍解】'+@post.bankai if @post.bankai.present? }#{ @post.bankai_hurigana.present? ? '('+@post.bankai_hurigana+')' : '' }
          %0a%0a#{@post.detail}
-         %0a%23BLEACH%20%20%0a%23BLEACH_anime%20%20%0a%23オリジナル斬魄刀%20%20%0a%23オリジナル斬魄刀投稿サイト%20%0a",
+         %0a%23BLEACH%20%20%0a%23BLEACH_anime%20%20%0a%23オリジナル斬魄刀投稿サイト%20%0a",
          target: '_blank', class: 'btn btn-dark mt-2' do %>
          Twitterでシェアする
        <% end %>  

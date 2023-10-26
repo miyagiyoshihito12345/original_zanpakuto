@@ -3,7 +3,7 @@
   #{ root_url }&text=オリジナル斬魄刀をシェアします！
   %0a【始解】#{ post.shikai }#{ post.shikai_hurigana.present? ? '('+post.shikai_hurigana+')' : '' }
   %0a#{ '【卍解】'+post.bankai if post.bankai.present? }#{ post.bankai_hurigana.present? ? '('+post.bankai_hurigana+')' : '' }
-  %0a%0a%23BLEACH%20%20%0a%23BLEACH_anime%20%20%0a%23オリジナル斬魄刀%20%20%0a%23オリジナル斬魄刀投稿サイト%20%0a", target: '_blank' do %>
+  %0a%0a%23BLEACH%20%20%0a%23BLEACH_anime%20%20%0a%23オリジナル斬魄刀投稿サイト%20%0a", target: '_blank' do %>
       <%= fa_stacked_icon "twitter", base: "square-o", style: 'color: #3399FF;' %>
     <% end %> 
 <% end %>
