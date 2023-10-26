@@ -1,7 +1,17 @@
 <div class="container pt-3">
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <h1 class="float-left mb-5"><%= t('.title') %></h1>
+      <div class="d-flex justify-content-between align-items-center">
+        <h1 class="float-left"><%= t('.title') %></h1>
+        <div>
+          <% if @post.next.present? %>
+            <%= link_to '前の投稿', post_path(@post.next) %>
+          <% end %>
+          <% if @post.previous.present? %>
+            <%= link_to '次の投稿', post_path(@post.previous), class: 'ms-2' %>
+          <% end %>
+        </div>
+      </div>
       <div class="show-img">
         <%= image_tag @post.image.url, class: 'card-img-top', style: 'width: 100%; height: 100%;' %>
       </div>
@@ -13,62 +23,62 @@
       <div style="display: flex; justify-content: flex-end; align-items: center;">
         <%= render 'posts/twitter_share', post: @post %>
       </div>
-      <table class="table">
-        <%= render 'posts/tag_list', tag_list: @post.tag_list %>
+      <%= render 'posts/tag_list', tag_list: @post.tag_list %>
+      <ul class="list-group list-group-flush">
         <% if @post.kaigo.present? %>
-          <tr>
-            <th scope="row">【<%= t('.kaigo')  %>】</th>
-            <td>
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">【<%= t('.kaigo')  %>】</div>
               <ruby>
                 <%= @post.kaigo %>
                 <rt><%= @post.kaigo_hurigana %></rt>
               </ruby>
-            </td>
-          </tr>
+            </div>
+          </li>
         <% end %>
-        <tr>
-          <th scope="row" style="padding-top: 14px;">【<%= t('.shikai')  %>】</th>
-          <td class="pt-3">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">【<%= t('.shikai')  %>】</div>
             <ruby>
               <%= @post.shikai %>
               <rt><%= @post.shikai_hurigana %></rt>
             </ruby>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row" style="min-width: 130px;">【<%= t('.ability')  %>】</th>
-          <td>
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">【<%= t('.ability')  %>】</div>
             <%= simple_format(@post.ability) %>
-          </td>
-        </tr>
+          </div>
+        </li>
         <% if @post.bankai.present? %>
-          <tr>
-            <th scope="row" style="padding-top: 14px;">【<%= t('.bankai')  %>】</th>
-            <td class="pt-3">
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">【<%= t('.bankai')  %>】</div>
               <ruby>
                 <%= @post.bankai %>
                 <rt><%= @post.bankai_hurigana %></rt>
               </ruby>
-            </td>
-          </tr>
+            </div>
+          </li>
         <% end %>
         <% if @post.bankai_ability.present? %>
-          <tr>
-            <th scope="row" style="min-width: 130px;">【<%= t('.bankai_ability')  %>】</th>
-            <td>
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">【<%= t('.bankai_ability')  %>】</div>
               <%= simple_format(@post.bankai_ability) %>
-            </td>
-          </tr>
+            </div>
+          </li>
         <% end %>
         <% if @post.detail.present? %>
-          <tr>
-            <th scope="row">【<%= t('.detail')  %>】</th>
-            <td>
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">【<%= t('.detail')  %>】</div>
               <%= simple_format(@post.detail) %>
-            </td>
-          </tr>
+            </div>
+          </li>
         <% end %>
-      </table>
+      </ul>
     </div>
   </div>
 </div>
