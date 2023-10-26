@@ -1,3 +1,7 @@
 <li class="page-item">
-  <%= link_to_unless current_page.last?, raw(t 'views.pagination.next'), url, rel: 'next', remote: remote, class: 'page-link bg-dark text-white' %>
+  <% unless current_page.last? %>
+  <%= link_to url, rel: 'next', remote: remote, class: 'page-link bg-dark text-white' do %>
+    <span aria-hidden="true">&raquo;</span>
+  <% end %>
+<% end %>
 </li>
