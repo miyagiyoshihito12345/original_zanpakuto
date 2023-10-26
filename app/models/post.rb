@@ -20,4 +20,12 @@ class Post < ApplicationRecord
   validates :bankai_hurigana, length: { maximum: 255 }
   validates :bankai_ability, length: { maximum: 65_535 }
   validates :detail, length: { maximum: 65_535 }
+
+  def previous
+    Post.where("id < ?", self.id).where(is_draft: false).order("id DESC").first
+  end
+
+  def next
+    Post.where("id > ?", self.id).where(is_draft: false).order("id ASC").first
+  end
 end
