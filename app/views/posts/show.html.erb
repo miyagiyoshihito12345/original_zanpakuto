@@ -4,10 +4,10 @@
       <div class="d-flex justify-content-between align-items-center">
         <h1 class="float-left"><%= t('.title') %></h1>
         <div>
-          <% if @post.next.present? %>
+          <% if @post.next.present? && @post.is_draft == false %>
             <%= link_to '前の投稿', post_path(@post.next) %>
           <% end %>
-          <% if @post.previous.present? %>
+          <% if @post.previous.present? && @post.is_draft == false %>
             <%= link_to '次の投稿', post_path(@post.previous), class: 'ms-2' %>
           <% end %>
         </div>
