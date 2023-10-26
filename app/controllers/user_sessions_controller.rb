@@ -13,9 +13,9 @@ class UserSessionsController < ApplicationController
   end
 
   def destroy
-    count = session[:count]
+   # count = session[:count]
     logout
-    session[:count] = count
+    #session[:count] = count
     redirect_to root_path, success: t('.success')
   end
 end
