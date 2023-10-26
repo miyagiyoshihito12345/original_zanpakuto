@@ -1,7 +1,7 @@
 <div class="container pt-3">
   <div class="row">
-    <div class="col-md-10 offset-md-1">
-      <h1 class="float-left mb-5"><%= t('.title') %></h1>
+    <div class="col-md-8 offset-md-2">
+      <h1 class="float-left mb-5 text-center"><%= t('.title') %></h1>
       <%= link_to t('defaults.edit'), edit_profiles_path, class: 'btn btn-dark float-right' %>
       <table class="table">
         <tr>
@@ -17,14 +17,18 @@
           <td><%= image_tag current_user.avatar.url, class: 'rounded-circle', size: '50x50', alt: "アバター" %></td> 
         </tr>
       </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
       <div class="btn-group mb-3" role="group" aria-label="Basic outlined example" data-controller="button">
         <%= link_to t('.my_post'), my_post_order_profiles_path, class: "active btn btn-outline-dark", data: { turbo: true, button_target: 'new', action: 'click->button#new_button' } %>
         <%= link_to '霊圧', my_reiatu_order_profiles_path, class: "btn btn-outline-dark", data: { turbo: true, button_target: 'edit', action: 'click->button#edit_button' } %>
         <%= link_to t('.draft'), my_draft_order_profiles_path, class: "btn btn-outline-dark", data: { turbo: true, button_target: 'reiatu', action: 'click->button#reiatu_button' } %>
       </div>
-      <div class="col-12">
         <%= render 'profiles/profile_order', posts: @myposts %>
-      </div>
     </div>
   </div>
 </div>

@@ -76,7 +76,6 @@
           <div class="form-group mt-4">
             <%= form.label :kangi_text, '好きな漢字を一文字入力して下さい。【必須】', style: 'font-size: 20px;' %><br>
             <%= form.text_field :kangi_text, class: 'form-control mt-3', style: 'width: 200px;', placeholder: '優' %>
-            <p style="font-size: 12px;">※この漢字が始解名、卍解名に含まれます。</p>
           </div>
           <div style="display: flex; justify-content: center; margin-top: 50px;">
             <%= form.submit "AIに斬魄刀を作ってもらう", class: 'btn btn-dark', data: { alert_target: "submit" } %>

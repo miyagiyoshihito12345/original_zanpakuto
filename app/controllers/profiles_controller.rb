@@ -2,11 +2,11 @@ class ProfilesController < ApplicationController
   before_action :set_user, only: %i[edit update]
 
   def show
-    @myposts = current_user.posts.where(is_draft: false).order(created_at: :desc)
+    @myposts = current_user.posts.where(is_draft: false).order(created_at: :desc).page(params[:page])
   end
 
   def my_post_order
-    posts = current_user.posts.where(is_draft: false).order(created_at: :desc)
+    posts = current_user.posts.where(is_draft: false).order(created_at: :desc).page(params[:page])
     render turbo_stream: turbo_stream.replace(
       "js-my-post-order",
       partial: 'profiles/profile_order',
@@ -15,7 +15,7 @@ class ProfilesController < ApplicationController
   end
 
   def my_draft_order
-    posts = current_user.posts.where(is_draft: true).order(created_at: :desc)
+    posts = current_user.posts.where(is_draft: true).order(created_at: :desc).page(params[:page])
     render turbo_stream: turbo_stream.replace(
       "js-my-post-order",
       partial: 'profiles/profile_order',
@@ -24,7 +24,7 @@ class ProfilesController < ApplicationController
   end
   
   def my_reiatu_order
-    posts = current_user.reiatu_posts.order(created_at: :desc)
+    posts = current_user.reiatu_posts.order(created_at: :desc).page(params[:page])
     render turbo_stream: turbo_stream.replace(
       "js-my-post-order",
       partial: 'profiles/profile_order',
