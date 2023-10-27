@@ -16,11 +16,17 @@
 <%= render 'shared/search' %>
 <h3 id="post" style="text-align: center;" class="mt-5 mb-3"><%= t('.title') %></h3>
 <div class="container pt-3">
-<div class="btn-group mb-3" role="group" aria-label="Basic outlined example" data-controller="button">
-  <%= link_to "新着順", index_new_order_posts_path, class: "active btn btn-outline-dark", data: { turbo: true, button_target: 'new', action: 'click->button#new_button' } %>
-  <%= link_to "更新順", index_edit_order_posts_path, class: "btn btn-outline-dark", data: { turbo: true, button_target: 'edit', action: 'click->button#edit_button' } %>
-  <%= link_to "人気順", index_reiatu_order_posts_path, class: "btn btn-outline-dark", data: { turbo: true, button_target: 'reiatu', action: 'click->button#reiatu_button' } %>
-</div>
+  <ul class="nav nav-tabs mb-3" data-controller="button">
+    <li class="nav-item">
+      <%= link_to "新着順", index_new_order_posts_path, class: "active nav-link text-dark", data: { turbo: true, button_target: 'new', action: 'click->button#new_button' } %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "更新順", index_edit_order_posts_path, class: "nav-link text-dark", data: { turbo: true, button_target: 'edit', action: 'click->button#edit_button' } %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "人気順", index_reiatu_order_posts_path, class: "nav-link text-dark", data: { turbo: true, button_target: 'reiatu', action: 'click->button#reiatu_button' } %>
+    </li>
+  </ul>
   <div class="row">
     <div class="col-12">
       <%= render 'posts/index_order', posts: @posts %>
