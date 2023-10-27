@@ -1,7 +1,7 @@
 class AvatarUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
@@ -17,9 +17,26 @@ class AvatarUploader < CarrierWave::Uploader::Base
     'default_avatar.webp'
   end
 
+  process resize_to_fit: [100, 100]
+
   def extension_whitelist # 拡張子の制限
-    %w[jpg jpeg gif png]
+    %w[jpg jpeg gif png webp heic]
   end
+
+  #WebPに変換
+  process :convert_to_webp
+
+  def convert_to_webp
+    manipulate! do |img|
+      img.format 'webp'
+      img
+    end
+  end
+  #拡張子を.webpで保存
+  def filename
+    super.chomp(File.extname(super)) + '.webp' if original_filename.present?
+  end
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
