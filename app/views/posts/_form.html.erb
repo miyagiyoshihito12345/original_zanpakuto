@@ -3,19 +3,19 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="form-group mt-4">
     <%= f.label :kaigo %>
-    <%= f.text_field :kaigo, class: 'form-control mt-1' %>
+    <%= f.text_field :kaigo, class: 'form-control mt-1', placeholder: '蒼天に坐せ' %>
   </div>
   <div class="form-group mt-4">
     <%= f.label :kaigo_hurigana %>
-    <%= f.text_field :kaigo_hurigana, class: 'form-control mt-1' %>
+    <%= f.text_field :kaigo_hurigana, class: 'form-control mt-1', placeholder: 'そうてんにざせ' %>
   </div>
   <div class="form-group mt-4">
     <%= f.label :shikai %><span class="text-danger">*</span>
-    <%= f.text_field :shikai, class: 'form-control mt-1' %>
+    <%= f.text_field :shikai, class: 'form-control mt-1', placeholder: '氷輪丸' %>
   </div>
   <div class="form-group mt-4">
     <%= f.label :shikai_hurigana %>
-    <%= f.text_field :shikai_hurigana, class: 'form-control mt-1' %>
+    <%= f.text_field :shikai_hurigana, class: 'form-control mt-1', placeholder: 'ひょうりんまる' %>
   </div>
   <div class="form-group mt-4">
     <%= f.label :ability %><span class="text-danger">*</span>
@@ -23,11 +23,11 @@
   </div>
   <div class="form-group mt-4">
     <%= f.label :bankai %>
-    <%= f.text_field :bankai, class: 'form-control mt-1' %>
+    <%= f.text_field :bankai, class: 'form-control mt-1', placeholder: '大紅蓮氷輪丸' %>
   </div>
   <div class="form-group mt-4">
     <%= f.label :bankai_hurigana %>
-    <%= f.text_field :bankai_hurigana, class: 'mt-1 form-control' %>
+    <%= f.text_field :bankai_hurigana, class: 'mt-1 form-control', placeholder: 'だいぐれんひょうりんまる' %>
   </div>
   <div class="form-group mt-4">
     <%= f.label :bankai_ability %>

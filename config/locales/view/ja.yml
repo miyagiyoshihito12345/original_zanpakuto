@@ -16,7 +16,7 @@ ja:
     search_shikai: '始解名'
     search_bankai: '卍解名'
     search_username: 'ユーザー名'
-    tag_placeholder: '氷雪系,オサレ系,相手の神経操る系'
+    tag_placeholder: '氷雪系,オサレ系,氷雪系最強'
     message:
       require_login: 'ログインして下さい'
       created: '%{item}を作成しました'
