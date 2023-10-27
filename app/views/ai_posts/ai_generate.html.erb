@@ -40,7 +40,7 @@
          %0a#{ '【卍解】'+@post.bankai if @post.bankai.present? }#{ @post.bankai_hurigana.present? ? '('+@post.bankai_hurigana+')' : '' }
          %0a%0a#{@post.detail}
          %0a%23BLEACH%20%20%0a%23BLEACH_anime%20%20%0a%23オリジナル斬魄刀投稿サイト%20%0a",
-         target: '_blank', class: 'btn btn-dark mt-2' do %>
+         target: '_blank', class: 'btn btn-dark mt-4' do %>
          Twitterでシェアする
        <% end %>  
        <% if logged_in? %>
@@ -52,13 +52,13 @@
            <%= f.hidden_field :bankai_hurigana %>
            <%= f.hidden_field :detail %>
            <%= f.hidden_field :tag_list %>
-           <%= f.submit "内容を保存or編集or投稿する", class: "mt-2 complete-btn btn btn-dark" %>
+           <%= f.submit "内容を保存or編集or投稿する", class: "mt-4 complete-btn btn btn-dark" %>
          <% end %>
        <% end %>
-       <%= link_to 'もう一度AIで創る', new_ai_post_path, class: 'mt-2 btn btn-dark' %>
+       <%= link_to 'もう一度AIで創る', new_ai_post_path, class: 'mt-4 btn btn-dark' %>
       </div>
       <% unless logged_in? %>
-        <p class="text-center mt-2"><%= link_to 'ログイン', login_path %>すると斬魄刀の名前を保存したり投稿、編集したりすることができます。</p>
+        <p class="text-center mt-4"><%= link_to 'ログイン', login_path %>すると斬魄刀の名前を保存したり投稿、編集したりすることができます。</p>
       <% end %>
     </div>
   </div>
