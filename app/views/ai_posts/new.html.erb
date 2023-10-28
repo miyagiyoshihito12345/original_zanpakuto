@@ -78,17 +78,26 @@
             <%= form.text_field :kangi_text, class: 'form-control mt-3', style: 'width: 200px;', placeholder: '優' %>
           </div>
           <div style="display: flex; justify-content: center; margin-top: 50px;">
-            <%= form.submit "AIに斬魄刀を作ってもらう", class: 'btn btn-dark', data: { alert_target: "submit" } %>
-            <button class="btn btn-dark disvisible" type="button" data-alert-target="loading" disabled>
-              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              作成中...
-            </button>
+            <%= form.submit "AIに斬魄刀を作ってもらう", class: 'btn btn-dark' %>
           </div>
           <p class="text-center">※1日3回まで使用できます。</p>
         <% end %>
+        <div class="disvisible" data-alert-target="loading">
+          <div class="card text-bg-dark">
+            <%= image_tag 'ai_loading.webp', class: 'card-img', alt: '...' %>
+            <div class="card-img-overlay">
+              <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                <div class="spinner-border text-light" role="status" style="width: 2rem; height: 2rem;">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="card-title text-white h1 fw-bold mb-0 ms-3">
+                  作成中...
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.modal -->
       </div>
-
     </div>
   </div>
 </div>
-
