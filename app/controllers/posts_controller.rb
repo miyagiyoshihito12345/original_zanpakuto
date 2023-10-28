@@ -41,11 +41,7 @@ class PostsController < ApplicationController
   end
 
   def index_reiatu_order
-    posts = Post.where(is_draft: false).includes(:user)
-      .select('posts.*, COUNT(reiatus.post_id) AS reiatus_count')
-      .left_joins(:reiatus)
-      .group('posts.id')
-      .order('reiatus_count DESC').page(params[:page])
+    posts = Post.where(is_draft: false).includes(:user).left_joins(:reiatus).group(:id).order('COUNT(reiatus.id) DESC').page(params[:page])
     render turbo_stream: turbo_stream.replace(
       "js-index-order",
       partial: 'posts/index_order',

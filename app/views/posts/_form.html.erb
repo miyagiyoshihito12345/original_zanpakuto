@@ -1,82 +1,100 @@
 <p class="text-danger">*必須項目</p>
-<%= form_with model: post, local: true do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="form-group mt-4">
-    <%= f.label :kaigo %>
-    <%= f.text_field :kaigo, class: 'form-control mt-1', placeholder: '蒼天に坐せ' %>
-  </div>
-  <div class="form-group mt-4">
-    <%= f.label :kaigo_hurigana %>
-    <%= f.text_field :kaigo_hurigana, class: 'form-control mt-1', placeholder: 'そうてんにざせ' %>
-  </div>
-  <div class="form-group mt-4">
-    <%= f.label :shikai %><span class="text-danger">*</span>
-    <%= f.text_field :shikai, class: 'form-control mt-1', placeholder: '氷輪丸' %>
-  </div>
-  <div class="form-group mt-4">
-    <%= f.label :shikai_hurigana %>
-    <%= f.text_field :shikai_hurigana, class: 'form-control mt-1', placeholder: 'ひょうりんまる' %>
-  </div>
-  <div class="form-group mt-4">
-    <%= f.label :ability %><span class="text-danger">*</span>
-    <%= f.text_area :ability, class: 'form-control mt-1', rows: 10 %>
-  </div>
-  <div class="form-group mt-4">
-    <%= f.label :bankai %>
-    <%= f.text_field :bankai, class: 'form-control mt-1', placeholder: '大紅蓮氷輪丸' %>
-  </div>
-  <div class="form-group mt-4">
-    <%= f.label :bankai_hurigana %>
-    <%= f.text_field :bankai_hurigana, class: 'mt-1 form-control', placeholder: 'だいぐれんひょうりんまる' %>
-  </div>
-  <div class="form-group mt-4">
-    <%= f.label :bankai_ability %>
-    <%= f.text_area :bankai_ability, class: 'mt-1 form-control', rows: 10 %>
-  </div>
-  <script>
-    function previewImage() {
-      const target = this.event.target;
-      const file = target.files[0];
-      const reader  = new FileReader();
-      reader.onloadend = function () {
-        const preview = document.querySelector("#preview")
-        if(preview) {
-          preview.src = reader.result;
+<div data-controller="alert"> 
+  <%= form_with model: post, local: true, data: { action: "submit->alert#load" } do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="form-group mt-4">
+      <%= f.label :kaigo %>
+      <%= f.text_field :kaigo, class: 'form-control mt-1', placeholder: '蒼天に坐せ' %>
+    </div>
+    <div class="form-group mt-4">
+      <%= f.label :kaigo_hurigana %>
+      <%= f.text_field :kaigo_hurigana, class: 'form-control mt-1', placeholder: 'そうてんにざせ' %>
+    </div>
+    <div class="form-group mt-4">
+      <%= f.label :shikai %><span class="text-danger">*</span>
+      <%= f.text_field :shikai, class: 'form-control mt-1', placeholder: '氷輪丸' %>
+    </div>
+    <div class="form-group mt-4">
+      <%= f.label :shikai_hurigana %>
+      <%= f.text_field :shikai_hurigana, class: 'form-control mt-1', placeholder: 'ひょうりんまる' %>
+    </div>
+    <div class="form-group mt-4">
+      <%= f.label :ability %><span class="text-danger">*</span>
+      <%= f.text_area :ability, class: 'form-control mt-1', rows: 10 %>
+    </div>
+    <div class="form-group mt-4">
+      <%= f.label :bankai %>
+      <%= f.text_field :bankai, class: 'form-control mt-1', placeholder: '大紅蓮氷輪丸' %>
+    </div>
+    <div class="form-group mt-4">
+      <%= f.label :bankai_hurigana %>
+      <%= f.text_field :bankai_hurigana, class: 'mt-1 form-control', placeholder: 'だいぐれんひょうりんまる' %>
+    </div>
+    <div class="form-group mt-4">
+      <%= f.label :bankai_ability %>
+      <%= f.text_area :bankai_ability, class: 'mt-1 form-control', rows: 10 %>
+    </div>
+    <script>
+      function previewImage() {
+        const target = this.event.target;
+        const file = target.files[0];
+        const reader  = new FileReader();
+        reader.onloadend = function () {
+          const preview = document.querySelector("#preview")
+          if(preview) {
+            preview.src = reader.result;
+          }
+        }
+        if (file) {
+          reader.readAsDataURL(file);
         }
       }
-      if (file) {
-        reader.readAsDataURL(file);
-      }
-    }
-  </script>
-  <div class="form-group mt-4">
-    <%= f.label :image %>
-    <%= f.file_field :image, class: 'mt-1 form-control mb-3', accept: 'image/*', onchange: 'previewImage(preview)' %>
-    <%= f.hidden_field :image_cache %>
-  </div>
-  <div class="mt-3 mb-3">
-    <%= image_tag post.image.url, id: 'preview', size: '171x153', alt: "投稿画像のプレビュー" %>
-  </div>
-  <div class="form-group mt-4">
-    <%= f.label :detail %>
-    <%= f.text_area :detail, class: 'form-control mt-1', rows: 10 %>
-  </div>
-  <div class="form-group mt-4">
-    <%= f.label :tag_list %>
-    <div data-controller="autocomplete" data-autocomplete-url-value="/posts/search_tag" style="position: relative;" role="combobox">
-      <%= f.text_field :tag_list, value: post.tag_list.join(','), class: "form-control mt-1", placeholder: t('defaults.tag_placeholder'), data: { 'autocomplete-target' => 'input' } %>
-      <%= f.hidden_field :id, data: { 'autocomplete-target' => 'hidden' } %>
-      <ul class="list-group" data-autocomplete-target="results" style="width: 185px; position: absolute; z-index: 10;"></ul>
+    </script>
+    <div class="form-group mt-4">
+      <%= f.label :image %>
+      <%= f.file_field :image, class: 'mt-1 form-control mb-3', accept: 'image/*', onchange: 'previewImage(preview)' %>
+      <%= f.hidden_field :image_cache %>
     </div>
-  </div>
-  <div style="display: flex; justify-content: space-around; margin-top: 50px;">
-    <% if 'new' == action_name || post.is_draft == true || 'create' == action_name || 'new_ai' == action_name %>
-      <%= f.submit t('defaults.draft'), class: 'btn btn-dark' %>
-    <% end %>
-    <% if 'edit' == action_name && post.is_draft == false %>
-      <%= f.submit t('defaults.update'), class: 'btn btn-dark' %>
-    <% else %>
-      <%= f.submit t('defaults.post'), class: 'btn btn-dark' %>
-    <% end %>
-  </div>
-<% end %>
+    <div class="mt-3 mb-3">
+      <%= image_tag post.image.url, id: 'preview', size: '171x153', alt: "投稿画像のプレビュー" %>
+    </div>
+    <div class="form-group mt-4">
+      <%= f.label :detail %>
+      <%= f.text_area :detail, class: 'form-control mt-1', rows: 10 %>
+    </div>
+    <div class="form-group mt-4">
+      <%= f.label :tag_list %>
+      <div data-controller="autocomplete" data-autocomplete-url-value="/posts/search_tag" style="position: relative;" role="combobox">
+        <%= f.text_field :tag_list, value: post.tag_list.join(','), class: "form-control mt-1", placeholder: t('defaults.tag_placeholder'), data: { 'autocomplete-target' => 'input' } %>
+        <%= f.hidden_field :id, data: { 'autocomplete-target' => 'hidden' } %>
+        <ul class="list-group" data-autocomplete-target="results" style="width: 185px; position: absolute; z-index: 10;"></ul>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-around; margin-top: 50px;">
+      <% if 'new' == action_name || post.is_draft == true || 'create' == action_name || 'new_ai' == action_name %>
+        <%= f.submit t('defaults.draft'), class: 'btn btn-dark' %>
+      <% end %>
+      <% if 'edit' == action_name && post.is_draft == false %>
+        <%= f.submit t('defaults.update'), class: 'btn btn-dark' %>
+      <% else %>
+        <%= f.submit t('defaults.post'), class: 'btn btn-dark' %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="disvisible" data-alert-target="loading">
+    <div class="card text-bg-dark">
+      <%= image_tag 'ai_loading.webp', class: 'card-img', alt: '...' %>
+      <div class="card-img-overlay">
+        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+          <div class="spinner-border text-light" role="status" style="width: 2rem; height: 2rem;">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="card-title text-white h1 fw-bold mb-0 ms-3">
+            作成中... 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.modal -->
+
+</div>
