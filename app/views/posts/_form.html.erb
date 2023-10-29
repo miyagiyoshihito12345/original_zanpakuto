@@ -1,4 +1,37 @@
 <p class="text-danger">*必須項目</p>
+<% if 'new_ai' == action_name %> 
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    ChatGPTで生成する
+  </button>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-6 fw-bold" id="exampleModalLabel">以下の文章をコピペして自分のChatGPTに質問して下さい。</h1>
+        </div>
+        <div class="modal-body" data-controller="copy">
+          <div class="d-flex align-items-center justify-content-end" data-action="click->copy#copy_text">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+            </svg><div class="ms-1 mt-1" style="cursor: pointer;">コピーする</div>
+          </div>
+          <textarea id="message" class="form-control" name="message" rows="10" style="width: 100%;" data-copy-target="text">
+【始解】<%= post.shikai %>(<%= post.shikai_hurigana %>)
+【卍解】<%= post.bankai %>(<%= post.bankai_hurigana %>) 
+このオリジナル斬魄刀の【解号】と【始解の能力】と【卍解の能力】を考えて下さい。
+ただし、能力は<%= post.tag_list.first %>で、雰囲気は<%= post.tag_list.second %>です。
+【解号】は命令形の動詞にして下さい。</textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">閉じる</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
 <div data-controller="alert"> 
   <%= form_with model: post, local: true, data: { action: "submit->alert#load" } do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
