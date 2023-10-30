@@ -36,16 +36,29 @@
       </table>
       <div style="display: flex; justify-content: space-around; flex-wrap: wrap;" class="align-items-end mt-4 mb-4">
         <% if logged_in? %>
-          <%= form_with model: @post, url: new_ai_path, class: 'mt-4', method: :get, local: true do |f| %>
-            <%= f.hidden_field :shikai %>
-            <%= f.hidden_field :shikai_hurigana %>
-            <%= f.hidden_field :ability %>
-            <%= f.hidden_field :bankai %>
-            <%= f.hidden_field :bankai_hurigana %>
-            <%= f.hidden_field :detail %>
-            <%= f.hidden_field :tag_list %>
-            <p class="fw-bold mb-0 text-center">↓ChatGPTで↓</p>
-            <%= f.submit "能力の説明も生成する", class: "complete-btn btn btn-dark" %>
+          <% if request.from_pc? %>
+            <%= form_with model: @post, url: new_ai_path, class: 'mt-4', method: :get, local: true do |f| %>
+              <%= f.hidden_field :shikai %>
+              <%= f.hidden_field :shikai_hurigana %>
+              <%= f.hidden_field :ability %>
+              <%= f.hidden_field :bankai %>
+              <%= f.hidden_field :bankai_hurigana %>
+              <%= f.hidden_field :detail %>
+              <%= f.hidden_field :tag_list %>
+              <p class="fw-bold mb-0 text-center">↓ChatGPTで↓</p>
+              <%= f.submit "能力の説明も生成する", class: "complete-btn btn btn-dark" %>
+            <% end %>
+          <% else %>
+            <%= form_with model: @post, class: 'mt-4', method: :post, local: true do |f| %>
+              <%= f.hidden_field :shikai %>
+              <%= f.hidden_field :shikai_hurigana %>
+              <%= f.hidden_field :ability %>
+              <%= f.hidden_field :bankai %>
+              <%= f.hidden_field :bankai_hurigana %>
+              <%= f.hidden_field :detail %>
+              <%= f.hidden_field :tag_list %>
+              <%= f.submit t('defaults.ai_post'), class: "complete-btn btn btn-dark" %>
+            <% end %>
           <% end %>
         <% end %>
         <%= link_to "https://twitter.com/share?url=
