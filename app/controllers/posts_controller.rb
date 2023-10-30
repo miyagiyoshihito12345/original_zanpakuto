@@ -77,6 +77,12 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    if params[:commit] == t('defaults.ai_post')
+      @post.tag_list = @post.tag_list.first.split(" ") 
+      if @post.save
+        redirect_to root_path, success: t('defaults.message.created', item: Post.model_name.human)
+      end
+    end
     if params[:commit] == t('defaults.post')
       if @post.save
         redirect_to root_path, success: t('defaults.message.created', item: Post.model_name.human)

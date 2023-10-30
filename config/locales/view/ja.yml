@@ -9,6 +9,7 @@ ja:
     footer_privacy: 'プライバシーポリシー'
     footer_contact: 'お問い合わせ'
     post: '投稿する'
+    ai_post: '投稿一覧に投稿する'
     draft: '下書きに保存'
     edit: '編集'
     destroy: '削除'
