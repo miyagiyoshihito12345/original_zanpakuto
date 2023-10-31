@@ -26,36 +26,36 @@
       <%= render 'posts/tag_list', tag_list: @post.tag_list %>
       <ul class="list-group list-group-flush">
         <% if @post.kaigo.present? %>
-          <li class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">【<%= t('.kaigo')  %>】</div>
-              <ruby>
+          <li class="list-group-item p-0 pb-2 pt-2 d-flex justify-content-between align-items-start">
+            <div class="me-auto d-flex align-items-end">
+              <div class="fw-bold h6 mb-0 text-nowrap">【<%= t('.kaigo')  %>】</div>
+              <ruby class="h6 fw-bold mb-0">
                 <%= @post.kaigo %>
                 <rt><%= @post.kaigo_hurigana %></rt>
               </ruby>
             </div>
           </li>
         <% end %>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">【<%= t('.shikai')  %>】</div>
-            <ruby>
+        <li class="list-group-item d-flex p-0 pb-2 pt-2 justify-content-between align-items-start">
+          <div class="me-auto d-flex align-items-end">
+            <div class="fw-bold h5 mb-0 text-nowrap">【<%= t('.shikai')  %>】</div>
+            <ruby class="h5 fw-bold mb-0">
               <%= @post.shikai %>
               <rt><%= @post.shikai_hurigana %></rt>
             </ruby>
           </div>
         </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
+        <li class="list-group-item p-0 pb-2 pt-2 d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
             <div class="fw-bold">【<%= t('.ability')  %>】</div>
             <%= simple_format(@post.ability) %>
           </div>
         </li>
         <% if @post.bankai.present? %>
-          <li class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">【<%= t('.bankai')  %>】</div>
-              <ruby>
+          <li class="list-group-item d-flex p-0 pb-2 pt-2 justify-content-between align-items-start">
+            <div class="me-auto d-flex align-items-end">
+              <div class="fw-bold h5 mb-0 text-nowrap">【<%= t('.bankai')  %>】</div>
+              <ruby class="h5 fw-bold mb-0">
                 <%= @post.bankai %>
                 <rt><%= @post.bankai_hurigana %></rt>
               </ruby>
@@ -63,7 +63,7 @@
           </li>
         <% end %>
         <% if @post.bankai_ability.present? %>
-          <li class="list-group-item d-flex justify-content-between align-items-start">
+          <li class="list-group-item p-0 pb-2 pt-2 d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
               <div class="fw-bold">【<%= t('.bankai_ability')  %>】</div>
               <%= simple_format(@post.bankai_ability) %>
@@ -71,7 +71,7 @@
           </li>
         <% end %>
         <% if @post.detail.present? %>
-          <li class="list-group-item d-flex justify-content-between align-items-start">
+          <li class="list-group-item d-flex p-0 pb-2 pt-2 justify-content-between align-items-start">
             <div class="ms-2 me-auto">
               <div class="fw-bold">【<%= t('.detail')  %>】</div>
               <%= simple_format(@post.detail) %>
@@ -79,6 +79,14 @@
           </li>
         <% end %>
       </ul>
+        <div class="text-center">
+          <% if @post.next.present? && @post.is_draft == false %>
+            <%= link_to '前の投稿', post_path(@post.next) %>
+          <% end %>
+          <% if @post.previous.present? && @post.is_draft == false %>
+            <%= link_to '次の投稿', post_path(@post.previous), class: 'ms-2' %>
+          <% end %>
+        </div>
     </div>
   </div>
 </div>
