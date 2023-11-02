@@ -1,0 +1,8 @@
+<%= link_to "https://twitter.com/share?url=
+#{ post_url(my_post) }&text=#{my_post.shikai}で#{post.shikai}に勝ちました！
+%0a%0a勝率：#{winning_rate}%
+%0a%0a#{meigen}
+%0a%0a#{"あいうえお" if win}
+%0a%0a%23BLEACH%20%20%0a%23BLEACH_anime%20%20%0a%23オリジナル斬魄刀投稿サイト%20%0a", target: '_blank' do %>
+<%= fa_stacked_icon "twitter", base: "square-o", style: 'color: #3399FF;' %>
+<% end %>  

@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   post 'ai_generate', to: 'ai_posts#ai_generate'
   get 'aaaaa', to: 'ai_posts#aaaaa'
   get 'new_ai', to: 'ai_posts#new_ai'
+  get 'fight_select', to: 'posts#fight_select'
+  get 'fight', to: 'posts#fight'
+  get 'fight_detail', to: 'posts#fight_detail'
+  get 'fight_close', to: 'posts#fight_close'
 
   resources :users, only: %i[new create]
   resource :profiles, only: %i[show edit update] do

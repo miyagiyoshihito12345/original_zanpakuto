@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   include SearchActions
   include AutocompleteActions
   include TurboActions
+  include FightActions
 
   skip_before_action :require_login, only: %i[index show search search_shikai search_bankai search_username index_new_order index_edit_order index_reiatu_order]
   before_action :set_post, only: %i[edit update destroy]

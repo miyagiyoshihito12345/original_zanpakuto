@@ -1,8 +1,19 @@
-<%= turbo_frame_tag "js-index-order", frame: posts do %>
-  <div class="row" style="justify-content: space-around;">
-    <% posts.each do |post| %>
-      <%= render partial: 'posts/post', locals: { post: post } %>
-    <% end %>
-  </div>
-  <%= paginate posts %>
+<% if defined?(my_post) %>
+  <%= turbo_frame_tag "js-index-order", frame: posts, frame: my_post do %>
+    <div class="row" style="justify-content: space-around;">
+      <% posts.each do |post| %>
+        <%= render partial: 'posts/post_fight', locals: { post: post, my_post: my_post } %>
+      <% end %>
+    </div>
+    <%= paginate posts %>
+  <% end %>
+<% else %>
+  <%= turbo_frame_tag "js-index-order", frame: posts do %>
+    <div class="row" style="justify-content: space-around;">
+      <% posts.each do |post| %>
+        <%= render partial: 'posts/post', locals: { post: post } %>
+      <% end %>
+    </div>
+    <%= paginate posts %>
+  <% end %>
 <% end %>
