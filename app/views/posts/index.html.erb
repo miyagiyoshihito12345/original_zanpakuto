@@ -2,14 +2,14 @@
   <%= image_tag 'top_page.webp', class: 'hoge', style: 'width: 100%; z-index: 2;', alt: "トップページ" %>
   <%= image_tag 'top_page_smart.webp', class: 'smart_hoge', style: 'width: 100%; z-index: 2;', alt: "トップページ" %>
   <div style="position: absolute; top: 50%; z-index: 3; left: 50%; transform: translate(-50%, -50%);">
-    <h2 class="text-nowrap text-light text-center top-page-title" style="font-family: serif;">オリジナル斬魄刀投稿サイト</h2>
+    <h2 class="text-nowrap text-light text-center top-page-title fw-bold" style="font-family: serif;">オリジナル斬魄刀投稿サイト</h2>
     <p class="text-light text-center top-page-sub-title", style="font-family: serif;">Original Zanpakuto Share Service</p>
     <div class="mt-4 mb-4">
       <p class="text-light text-center top-page-detail", style="font-family: serif;"><%= t('defaults.top_detail') %></p>
     </div>
     <div class="text-center">
+      <%= link_to 'AIで創る', new_ai_post_path, class: 'btn btn-light me-3', style: 'font-family: serif;' %>
       <%= link_to t('defaults.top_button'), new_post_path, class: 'btn btn-light', style: 'font-family: serif;' %>
-      <%# link_to 'AIで創る', new_ai_post_path, class: 'btn btn-light', style: 'font-family: serif;' %>
     </div>
   </div>
 </div>
