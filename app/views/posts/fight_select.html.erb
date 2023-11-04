@@ -1,0 +1,15 @@
+<h1 id="post" style="text-align: center;" class="mt-4 mb-3 h2">戦う相手を選んでください</h1>
+<h2 id="post" style="text-align: center;" class="h3 mt-3 mb-3">
+  <ruby class="fw-bold mb-0">
+    <%= @post.shikai %>
+    <rt><%= @post.shikai_hurigana %></rt>
+  </ruby>  VS  <span class="fw-bold">???</span>
+</h2>
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-12">
+      <%= render 'posts/index_order', posts: @posts, my_post: @post %>
+    </div>
+  </div>
+</div>
+<%= turbo_frame_tag 'modal' %>

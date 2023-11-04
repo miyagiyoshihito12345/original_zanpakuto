@@ -1,0 +1,30 @@
+<div style="position: relative;">
+  <%= image_tag 'ai.webp', class: 'hoge', style: 'width: 100%; z-index: 2;', alt: "AI生成結果" %>
+  <%= image_tag 'ai_mobile.webp', class: 'smart_hoge', style: 'width: 100%; z-index: 2;', alt: "AI生成結果" %>
+  <div style="position: absolute; top: 50%; z-index: 3; left: 50%; transform: translate(-50%, -50%);">
+    <h1 class="text-center text-white fw-bold text-nowrap"><%= @win ? '勝利！' : '敗北...' %></h1>
+    <div class="mt-3 text-center">
+      <p class="fw-bold h5 text-white mb-2"><%= @win ? 'Win' : 'Lose' %>/<%= @win ? 'Lose' : 'Win' %></p>
+      <span class="fw-bold h1 text-white text-nowrap"><ruby><%= @my_post.shikai %><rt><%= @my_post.shikai_hurigana if @my_post.shikai_hurigana.present? %></rt></ruby>
+      vs <ruby><%= @post.shikai %><rt><%= @post.shikai_hurigana if @post.shikai_hurigana.present? %></rt></ruby></span>
+      <p class="text-white h5 mt-3"><%= @meigen %></p>
+    </div>
+  </div>
+</div>
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <span class="fw-bold h4 text-nowrap"><ruby><%= @my_post.shikai %><rt><%= @my_post.shikai_hurigana if @my_post.shikai_hurigana.present? %></rt></ruby></span>
+      <span class="fw-bold h4">で</span>
+      <span class="fw-bold h4 text-nowrap"><ruby><%= @post.shikai %><rt><%= @post.shikai_hurigana if @post.shikai_hurigana.present? %></rt></ruby></span>
+      <span class="fw-bold h4">に勝てる確率：</span>
+      <span class="fw-bold h3"><%= @winning_rate %>%</span>
+      <div class="d-flex justify-content-around">
+        <!-- Twitterシェアボタンは保留 -->
+        <%# render 'posts/twitter_fight_share', my_post: @my_post, post: @post, win: @win, winning_rate: @winning_rate, meigen: @meigen %>
+        <%= link_to '別の斬魄刀と戦う', fight_select_path(id: @my_post.id), class: 'mt-4 btn btn-dark' %>
+        <%= link_to '斬魄刀詳細に戻る', post_path(@my_post), class: 'mt-4 btn btn-dark' %>
+      </div>
+    </div>
+  </div>
+</div>

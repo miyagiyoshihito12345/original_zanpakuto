@@ -1,0 +1,68 @@
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <div class="post-item-img">
+        <%= image_tag post.image.url, class: 'card-img-top', style: 'width: 100%; height: 100%;', alt: "オリジナル斬魄刀の画像" %>
+      </div>
+      <div style="align-items: center; display: flex;" class="mt-1 ms-2">
+        <%= image_tag post.user.avatar.url, class: 'rounded-circle', size: '30x30', alt: "アバター" %>
+        <div class="ms-2"><%= post.user.name %></div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body p-2 ps-1">
+        <%= render 'posts/tag_list', tag_list: post.tag_list %>
+        <% if post.kaigo.present? %>
+          <% if post.kaigo.length > 16 %>
+            <h5 class="mb-1 card-title" style="font-size: 16px;">
+              【<%= t('posts.show.kaigo') %>】
+              <ruby>
+                <%= post.kaigo[0, 18]... %>
+                <rt><%= post.kaigo_hurigana[0, 25]... %></rt>
+              </ruby>
+            </h5>
+          <% else %>
+            <h5 class="mb-1 card-title">
+              【<%= t('posts.show.kaigo') %>】
+              <ruby>
+                <%= post.kaigo %>
+                <rt><%= post.kaigo_hurigana %></rt>
+              </ruby>
+            </h5>
+          <% end %>
+        <% end %>
+        <h5 class="card-title mb-1">
+          【<%= t('posts.show.shikai') %>】
+          <ruby>
+            <% if post.shikai.length > 10 %>
+              <%= link_to post.shikai[0, 10]..., fight_detail_path(id: post.id) %>
+              <rt><%= post.shikai_hurigana[0, 20]... %></rt>
+            <% else %>
+              <%= link_to post.shikai, fight_detail_path(id: post.id) %>
+              <rt><%= post.shikai_hurigana %></rt>
+            <% end %>
+          </ruby>
+        </h5>
+        <p class="card-text mb-1"><small class="txt-limit text-dark"><%= post.ability %></small></p>
+        <% if post.bankai.present? %>
+          <h5 class="card-title">
+            【<%= t('posts.show.bankai') %>】
+            <ruby>
+              <% if post.bankai.length > 10 %>
+                <%= post.bankai[0, 10]... %>
+                <rt><%= post.bankai_hurigana[0, 20]... %></rt>
+              <% else %>
+                <%= post.bankai %>
+                <rt><%= post.bankai_hurigana %></rt>
+              <% end %>
+            </ruby>
+          </h5>
+        <% end %>
+        <div style="display: flex; justify-content: flex-end;">
+          <%= link_to 'この斬魄刀と戦う', fight_path(my_post_id: my_post.id, post_id: post.id), class: 'btn btn-outline-dark btn-sm', data: { turbo: false } %> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

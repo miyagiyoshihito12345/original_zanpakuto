@@ -28,4 +28,16 @@ class Post < ApplicationRecord
   def next
     Post.where("id > ?", self.id).where(is_draft: false).order("id ASC").first
   end
+
+  def power
+    power = self.ability.size
+    power += self.bankai_ability.size    unless self.bankai_ability.nil?
+    power += self.detail.size            unless self.detail.nil?
+    power += 30                          unless self.image.file.nil?
+    power
+  end 
+
+  def winning_rate(post)
+    self.power * 100 / (self.power + post.power)
+  end
 end
