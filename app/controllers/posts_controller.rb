@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   include TurboActions
   include FightActions
 
-  skip_before_action :require_login, only: %i[index show search search_shikai search_bankai search_username index_new_order index_edit_order index_reiatu_order]
+  skip_before_action :require_login, only: %i[index show search search_shikai search_bankai search_username index_new_order index_edit_order index_reiatu_order fight_select fight fight_detail fight_close]
   before_action :set_post, only: %i[edit update destroy]
   layout 'layouts/autocomplete', only: %i[ search_shikai search_bankai search_username search_tag ]
 
