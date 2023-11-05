@@ -96,8 +96,8 @@ class AiPostsController < ApplicationController
   def ai_count
     if session[:count] == nil 
       session[:count] = 1 
-    elsif session[:count] == 3
-      flash.now['danger'] = '一日3回までしか使えません'
+    elsif session[:count] == 5
+      flash.now['danger'] = '一日5回までしか使えません'
       render :new, status: :unprocessable_entity
     else
       session[:count] += 1
