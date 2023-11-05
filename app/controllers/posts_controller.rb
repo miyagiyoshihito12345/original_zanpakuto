@@ -4,8 +4,16 @@ class PostsController < ApplicationController
   include TurboActions
   include FightActions
 
-  skip_before_action :require_login, only: %i[index show search search_shikai search_bankai search_username index_new_order index_edit_order index_reiatu_order fight_select fight fight_detail fight_close]
+  skip_before_action :require_login, only: %i[
+  index show search search_shikai
+  search_bankai search_username 
+  index_new_order index_edit_order 
+  index_reiatu_order fight_select 
+  fight fight_detail fight_close
+  ]
+
   before_action :set_post, only: %i[edit update destroy]
+
   layout 'layouts/autocomplete', only: %i[ search_shikai search_bankai search_username search_tag ]
 
   def index
@@ -97,7 +105,20 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:kaigo, :kaigo_hurigana, :shikai, :shikai_hurigana, :ability, :bankai, :bankai_hurigana, :bankai_ability, :detail, :image, :image_cache, :tag_list)
+    params.require(:post).permit(
+      :kaigo, 
+      :kaigo_hurigana, 
+      :shikai, 
+      :shikai_hurigana, 
+      :ability, 
+      :bankai, 
+      :bankai_hurigana, 
+      :bankai_ability, 
+      :detail, 
+      :image, 
+      :image_cache, 
+      :tag_list
+    )
   end
 
   def press?(button_name)

@@ -1,21 +1,31 @@
 class AiPostsController < ApplicationController
+  include OpenAiActions
+
   skip_before_action :require_login, only: %i[aaaaa new ai_generate]
   before_action :ai_validation, only: %i[ ai_generate ]
+
   def new; end
-  def aaaaa
-    @ability = "氷雪系"
-    @atmosphere = "かっこいい系"
-    @bankai_say = "卍解!"
-    @meigen = "憧れは、理解から最も遠い感情だよ"
-    @kangi = "氷"
-    @shikai = "氷輪丸"
-    @shikai_hurigana = "ひょうりんまる"
-    @bankai = "大紅蓮氷輪丸"
-    @bankai_hurigana = "だいぐれんひょうりんまる"
+
+  def aaaaa # 開発用
+    user_input("氷雪系", "かっこいい系", "卍解!", "憧れは、理解から最も遠い感情だよ", "氷")
     if logged_in?
-      @post = current_user.posts.build(shikai: @shikai, shikai_hurigana: @shikai_hurigana, ability: "#{@ability}の斬魄刀です。", bankai: @bankai, bankai_hurigana: @bankai_hurigana, detail: @meigen, tag_list: Array[@ability,@atmosphere,@bankai_say])
+      @post = current_user.posts.build(
+        shikai: '氷輪丸',
+        shikai_hurigana: 'ひょうりんまる',
+        ability: "#{@ability}の斬魄刀です。", 
+        bankai: '大紅蓮氷輪丸', 
+        bankai_hurigana: 'だいぐれんひょうりんまる', 
+        detail: @meigen, 
+        tag_list: Array[@ability,@atmosphere,@bankai_say]
+      )
     else
-      @post = Post.new(shikai: @shikai, shikai_hurigana: @shikai_hurigana, bankai: @bankai, bankai_hurigana: @bankai_hurigana, detail: @meigen)
+      @post = Post.new(
+        shikai: '氷輪丸', 
+        shikai_hurigana: 'ひょうりんまる', 
+        bankai: '大紅蓮氷輪丸', 
+        bankai_hurigana: 'だいぐれんひょうりんまる', 
+        detail: @meigen
+      )
     end
     render :ai_generate
   end
@@ -26,50 +36,49 @@ class AiPostsController < ApplicationController
   end
 
   def ai_generate
-    @ability = params[:ability]
-    @atmosphere = params[:atmosphere]
-    @bankai_say = params[:bankai]
-    @meigen = params[:meigen]
-    @kangi = params[:kangi_text]
-    @shikai = "斬魄刀の名前を考えて下さい。
+    user_input(params[:ability], params[:atmosphere], params[:bankai], params[:meigen], params[:kangi_text])
+
+    input = "斬魄刀の名前を考えて下さい。
     能力は#{@ability}で、斬魄刀の雰囲気は#{@atmosphere}です。
     ただし、名前に#{@kangi}という漢字を含むようにして下さい。"
+
+    additional_prompt = "質問には漢字で答えてください。漢字の横に()でふりがなを添えて下さい。解答例は、氷輪丸(ひょうりんまる)です"
+
     @client = OpenAI::Client.new
-    response = @client.chat(
-      parameters: {
-        model: "gpt-4",
-        messages: [
-          { role: "system", content: "質問には漢字で答えてください。漢字の横に()でふりがなを添えて下さい。解答例は、氷輪丸(ひょうりんまる)です" },
-          { role: "user", content: @shikai },
-        ],
-        temperature: 1.2,
-      })
-    @shikai = response.dig("choices", 0, "message", "content")
-    @bankai = "斬魄刀「#{@shikai}」の卍解の名前を考えて下さい。
+
+    match_data = chat(input, additional_prompt).match(/(.+?)\((.+?)\)/)
+    shikai = match_data[1]  # 漢字部分
+    shikai_hurigana = match_data[2]  # ふりがな部分
+
+
+    input = "斬魄刀「#{shikai}」の卍解の名前を考えて下さい。
     能力は#{@ability}で、斬魄刀の雰囲気は#{@atmosphere}です。
     ただし、名前に#{@kangi}という漢字を含むようにして下さい。"
-    response = @client.chat(
-      parameters: {
-        model: "gpt-4",
-        messages: [
-          { role: "system", content: "質問には漢字で答えてください。漢字の横に()でふりがなを添えて下さい。解答例は、大紅蓮氷輪丸(だいぐれんひょうりんまる)です" },
-          { role: "user", content: @bankai },
-        ],                
-        temperature: 1.2,
-      })  
-    @bankai = response.dig("choices", 0, "message", "content")
-    if match_data = @shikai.match(/(.+?)\((.+?)\)/)
-      @shikai = match_data[1]  # 漢字部分
-      @shikai_hurigana = match_data[2]  # ふりがな部分
-    end
-    if match_data = @bankai.match(/(.+?)\((.+?)\)/)
-      @bankai = match_data[1]  # 漢字部分
-      @bankai_hurigana = match_data[2]  # ふりがな部分
-    end
+
+    additional_prompt = "質問には漢字で答えてください。漢字の横に()でふりがなを添えて下さい。解答例は、大紅蓮氷輪丸(ひょうりんまる)です"
+
+    match_data = chat(input, additional_prompt).match(/(.+?)\((.+?)\)/)
+    bankai = match_data[1]  # 漢字部分
+    bankai_hurigana = match_data[2]  # ふりがな部分
+
     if logged_in?
-      @post = current_user.posts.build(shikai: @shikai, shikai_hurigana: @shikai_hurigana, ability: "#{@ability}の斬魄刀です。", bankai: @bankai, bankai_hurigana: @bankai_hurigana, detail: @meigen, tag_list: Array[@ability,@atmosphere,@bankai_say])
+      @post = current_user.posts.build(
+        shikai: shikai, 
+        shikai_hurigana: shikai_hurigana, 
+        ability: "#{@ability}の斬魄刀です。", 
+        bankai: bankai, 
+        bankai_hurigana: bankai_hurigana, 
+        detail: @meigen, 
+        tag_list: Array[@ability,@atmosphere,@bankai_say]
+      )
     else
-      @post = Post.new(shikai: @shikai, shikai_hurigana: @shikai_hurigana, bankai: @bankai, bankai_hurigana: @bankai_hurigana, detail: @meigen)
+      @post = Post.new(
+        shikai: shikai, 
+        shikai_hurigana: shikai_hurigana, 
+        bankai: bankai, 
+        bankai_hurigana: bankai_hurigana, 
+        detail: @meigen
+      )
     end
   end
 
@@ -90,7 +99,17 @@ class AiPostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:kaigo, :kaigo_hurigana, :shikai, :shikai_hurigana, :ability, :bankai, :bankai_hurigana, :detail, :tag_list)
+    params.require(:post).permit(
+      :kaigo, 
+      :kaigo_hurigana, 
+      :shikai, 
+      :shikai_hurigana, 
+      :ability, 
+      :bankai, 
+      :bankai_hurigana, 
+      :detail, 
+      :tag_list
+    )
   end 
 
   def ai_count
@@ -104,4 +123,11 @@ class AiPostsController < ApplicationController
     end
   end
 
+  def user_input(ability, atmosphere, bankai_say, meigen, kangi)
+    @ability = ability
+    @atmosphere = atmosphere
+    @bankai_say = bankai_say
+    @meigen = meigen
+    @kangi = kangi
+  end
 end
