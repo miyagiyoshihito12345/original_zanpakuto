@@ -3,7 +3,7 @@
     <div class="col-md-10 offset-md-1">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h1 class="float-left mb-0"><%= t('.title') %></h1>
-      <%= link_to 'この斬魄刀で戦う', fight_select_path(id: @post.id), class: 'btn btn-dark' %>
+      <%= link_to 'この斬魄刀で戦う', fight_select_path(id: @post.id), class: 'btn btn-dark' unless @post.is_draft %>
       </div>
       <div class="flex-wrap d-flex align-items-end justify-content-start">
       <div class="show-img">
