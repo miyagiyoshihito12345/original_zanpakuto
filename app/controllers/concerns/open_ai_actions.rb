@@ -6,7 +6,7 @@ module OpenAiActions
   def chat(input, additional_prompt)
     response = @client.chat(
       parameters: {
-        model: "gpt-4",
+        model: "gpt-4-1106-preview",
         messages: [
           { role: "system", content: additional_prompt },
           { role: "user", content: input },
