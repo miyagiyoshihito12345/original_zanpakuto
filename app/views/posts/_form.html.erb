@@ -19,11 +19,11 @@
             </svg><div class="ms-1 mt-1" style="cursor: pointer;">コピーする</div>
           </div>
           <textarea id="message" class="form-control" name="message" rows="10" style="width: 100%;" data-copy-target="text">
-【始解】<%= post.shikai %>(<%= post.shikai_hurigana %>)
-【卍解】<%= post.bankai %>(<%= post.bankai_hurigana %>) 
-このオリジナル斬魄刀の【解号】と【始解の能力】と【卍解の能力】を考えて下さい。
-ただし、能力は<%= post.tag_list.first %>で、雰囲気は<%= post.tag_list.second %>です。
-【解号】は命令形の動詞にして下さい。</textarea>
+            【始解】<%= post.shikai %>(<%= post.shikai_hurigana %>)
+            【卍解】<%= post.bankai %>(<%= post.bankai_hurigana %>) 
+            このオリジナル斬魄刀の【解号】と【始解の能力】と【卍解の能力】を考えて下さい。
+            ただし、能力は<%= post.tag_list.first %>で、雰囲気は<%= post.tag_list.second %>です。
+            【解号】は命令形の動詞にして下さい。</textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-dark" data-bs-dismiss="modal">閉じる</button>
@@ -53,7 +53,10 @@
     </div>
     <div class="form-group mt-4">
       <%= f.label :ability %><span class="text-danger">*</span>
-      <%= f.text_area :ability, class: 'form-control mt-1', rows: 10 %>
+      <%= link_to '能力を生成する', ai_ability_path(shikai: post.shikai, shikai_hurigana: post.shikai_hurigana, ability: post.tag_list.first, atmosphere: post.tag_list.second), data: { turbo: true, turbo_method: :get } %>
+      <%= turbo_frame_tag "ability-generate" do %>
+        <%= f.text_area :ability, class: 'form-control mt-1', rows: 10 %>
+      <% end %>
     </div>
     <div class="form-group mt-4">
       <%= f.label :bankai %>
