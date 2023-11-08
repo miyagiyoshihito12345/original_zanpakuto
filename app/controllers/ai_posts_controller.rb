@@ -42,7 +42,7 @@ class AiPostsController < ApplicationController
     能力は#{@ability}で、斬魄刀の雰囲気は#{@atmosphere}です。
     ただし、名前に#{@kangi}という漢字を含むようにして下さい。"
 
-    additional_prompt = "質問には漢字で答えてください。漢字の横に()でふりがなを添えて下さい。解答例は、氷輪丸(ひょうりんまる)です"
+    additional_prompt = "質問には漢字で答えてください。漢字の横に()でふりがなを添えて下さい。解答例は、斬月(ざんげつ)です"
 
     @client = OpenAI::Client.new
 
@@ -55,7 +55,7 @@ class AiPostsController < ApplicationController
     能力は#{@ability}で、斬魄刀の雰囲気は#{@atmosphere}です。
     ただし、名前に#{@kangi}という漢字を含むようにして下さい。"
 
-    additional_prompt = "質問には漢字で答えてください。漢字の横に()でふりがなを添えて下さい。解答例は、大紅蓮氷輪丸(ひょうりんまる)です"
+    additional_prompt = "質問には漢字で答えてください。漢字の横に()でふりがなを添えて下さい。解答例は、天鎖斬月(てんさざんげつ)です"
 
     match_data = chat(input, additional_prompt).match(/(.+?)\((.+?)\)/)
     bankai = match_data[1]  # 漢字部分
