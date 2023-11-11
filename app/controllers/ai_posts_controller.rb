@@ -3,6 +3,8 @@ class AiPostsController < ApplicationController
 
   skip_before_action :require_login, only: %i[aaaaa new ai_generate]
   before_action :ai_validation, only: %i[ ai_generate ]
+  before_action :ai_shikai_ability_count, only: %i[ ai_ability ]
+  before_action :ai_bankai_ability_count, only: %i[ ai_bankai_ability ]
 
   def new; end
 
@@ -10,6 +12,8 @@ class AiPostsController < ApplicationController
     user_input("氷雪系", "かっこいい系", "卍解!", "憧れは、理解から最も遠い感情だよ", "氷")
     if logged_in?
       @post = current_user.posts.build(
+        kaigo: '蒼天に坐せ',
+        kaigo_hurigana: 'そうてんにざせ',
         shikai: '氷輪丸',
         shikai_hurigana: 'ひょうりんまる',
         ability: "#{@ability}の斬魄刀です。", 
@@ -20,6 +24,8 @@ class AiPostsController < ApplicationController
       )
     else
       @post = Post.new(
+        kaigo: '蒼天に坐せ',
+        kaigo_hurigana: 'そうてんにざせ',
         shikai: '氷輪丸', 
         shikai_hurigana: 'ひょうりんまる', 
         bankai: '大紅蓮氷輪丸', 
@@ -45,7 +51,7 @@ class AiPostsController < ApplicationController
     name_count = word_count
     example = zanpakuto_example(name_count)
 
-    additional_prompt = "質問には#{name_count.first}文字の漢字で答えてください。漢字の横に()でふりがなを添えて下さい。解答例は、#{example.first}です"
+    additional_prompt = "質問には#{name_count.first}文字の漢字で答えてください。漢字の横に()でふりがなを添えて下さい。解答例は、#{example.first}です。"
 
     @client = OpenAI::Client.new
 
@@ -53,6 +59,13 @@ class AiPostsController < ApplicationController
     shikai = match_data[1]  # 漢字部分
     shikai_hurigana = match_data[2]  # ふりがな部分
 
+    input = "斬魄刀「#{shikai}(#{shikai_hurigana})」に似合う命令形の動詞を考えて下さい。"
+
+    additional_prompt = "質問には命令形の動詞で答えてください。その動詞の横に()でふりがなを添えて下さい。解答例は、#{kaigo_example}です。"
+
+    match_data = chat(input, additional_prompt).match(/(.+?)\((.+?)\)/)
+    kaigo = match_data[1]  # 漢字部分
+    kaigo_hurigana = match_data[2]  # ふりがな部分
 
     input = "斬魄刀「#{shikai}」の卍解の名前を考えて下さい。
     能力は#{@ability}で、斬魄刀の雰囲気は#{@atmosphere}です。
@@ -65,6 +78,8 @@ class AiPostsController < ApplicationController
     bankai_hurigana = match_data[2]  # ふりがな部分
     if logged_in?
       @post = current_user.posts.build(
+        kaigo: kaigo,
+        kaigo_hurigana: kaigo_hurigana,
         shikai: shikai, 
         shikai_hurigana: shikai_hurigana, 
         ability: "#{@ability}の斬魄刀です。", 
@@ -75,6 +90,8 @@ class AiPostsController < ApplicationController
       )
     else
       @post = Post.new(
+        kaigo: kaigo,
+        kaigo_hurigana: kaigo_hurigana,
         shikai: shikai, 
         shikai_hurigana: shikai_hurigana, 
         bankai: bankai, 
@@ -86,7 +103,7 @@ class AiPostsController < ApplicationController
 
   def ai_ability
     input = "オリジナル斬魄刀「#{params[:shikai]}(#{params[:shikai_hurigana]})」の能力を考えて下さい。ただし、能力の種類は#{params[:ability]}で、雰囲気は、#{params[:atmosphere]}です。"
-    additional_prompt = "質問には140字程度の日本語で答えて下さい。"
+    additional_prompt = "質問には140字程度の日本語で答えて下さい。「である。」という口調で答えて下さい。"
     @client = OpenAI::Client.new
     ability = chat(input, additional_prompt)
     render turbo_stream: turbo_stream.replace(
@@ -96,12 +113,24 @@ class AiPostsController < ApplicationController
     )   
   end
 
+  def ai_bankai_ability
+    input = "オリジナル斬魄刀「#{params[:shikai]}(#{params[:shikai_hurigana]})」の卍解「#{params[:bankai]}(#{params[:bankai_hurigana]})」の能力を考えて下さい。ただし、能力の種類は#{params[:ability]}で、雰囲気は、#{params[:atmosphere]}です。"
+    additional_prompt = "質問には140字程度の日本語で答えて下さい。「である。」という口調で答えて下さい。"
+    @client = OpenAI::Client.new
+    ability = chat(input, additional_prompt)
+    render turbo_stream: turbo_stream.replace(
+      "bankai-ability-generate",
+      partial: 'ai_posts/bankai_ability_turbo',
+      locals: { ability: ability }
+    )   
+  end
+
   private
 
   def ai_validation
     if params[:ability].present? && params[:atmosphere].present? && params[:bankai].present? && params[:kangi_text].present?
       if params[:kangi_text].match?(/\p{Han}/) && params[:kangi_text].length == 1
-        #        ai_count
+        ai_count
         return
       end
       flash.now['danger'] = '一文字の漢字を入力して下さい'
@@ -134,6 +163,24 @@ class AiPostsController < ApplicationController
       render :new, status: :unprocessable_entity
     else
       session[:count] += 1
+    end
+  end
+
+  def ai_shikai_ability_count
+    if session[:shikai_count] == nil 
+      session[:shikai_count] = 1 
+    elsif session[:shikai_count] == 1
+      flash.now['danger'] = '使用できません'
+      render :new_ai, status: :unprocessable_entity
+    end
+  end
+
+  def ai_bankai_ability_count
+    if session[:bankai_count] == nil 
+      session[:bankai_count] = 1 
+    elsif session[:bankai_count] == 1
+      flash.now['danger'] = '使用できません'
+      render :new_ai, status: :unprocessable_entity
     end
   end
 

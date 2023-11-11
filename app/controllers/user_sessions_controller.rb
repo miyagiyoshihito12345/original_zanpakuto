@@ -14,8 +14,12 @@ class UserSessionsController < ApplicationController
 
   def destroy
     count = session[:count]
+    shikai_count = session[:shikai_count]
+    bankai_count = session[:bankai_count]
     logout
     session[:count] = count
+    session[:shikai_count] = shikai_count
+    session[:bankai_count] = bankai_count
     redirect_to root_path, success: t('.success')
   end
 end
