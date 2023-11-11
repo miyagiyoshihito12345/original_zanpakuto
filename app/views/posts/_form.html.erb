@@ -1,7 +1,7 @@
 <p class="text-danger">*必須項目</p>
 <% if 'new_ai' == action_name %> 
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <button type="button" class="fixed-bottom btn btn-outline-dark" style="bottom: 10px; width: 180px; right: 10px; left: auto;" data-bs-toggle="modal" data-bs-target="#exampleModal">
     ChatGPTで生成する
   </button>
   <!-- Modal -->
@@ -13,15 +13,14 @@
         </div>
         <div class="modal-body" data-controller="copy">
           <div class="d-flex align-items-center justify-content-end" data-action="click->copy#copy_text">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
-              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-            </svg><div class="ms-1 mt-1" style="cursor: pointer;">コピーする</div>
+            <i class="fa fa-clipboard" aria-hidden="true"></i>
+            <div class="ms-1 mt-1" style="cursor: pointer;">コピーする</div>
           </div>
           <textarea id="message" class="form-control" name="message" rows="10" style="width: 100%;" data-copy-target="text">
+【解号】<%= post.kaigo %>(<%= post.kaigo_hurigana %>)
 【始解】<%= post.shikai %>(<%= post.shikai_hurigana %>)
 【卍解】<%= post.bankai %>(<%= post.bankai_hurigana %>) 
-このオリジナル斬魄刀の【解号】と【始解の能力】と【卍解の能力】を考えて下さい。
+このオリジナル斬魄刀の【始解の能力】と【卍解の能力】を考えて下さい。
 ただし、能力は<%= post.tag_list.first %>で、雰囲気は<%= post.tag_list.second %>です。
 【解号】は命令形の動詞にして下さい。</textarea>
         </div>
@@ -52,8 +51,18 @@
       <%= f.text_field :shikai_hurigana, class: 'form-control mt-1', placeholder: 'ひょうりんまる' %>
     </div>
     <div class="form-group mt-4">
-      <%= f.label :ability %><span class="text-danger">*</span>
-      <%= f.text_area :ability, class: 'form-control mt-1', rows: 10 %>
+      <div class="d-flex justify-content-between align-items-end">
+        <div><%= f.label :ability %><span class="text-danger">*</span></div>
+        <% if 'new_ai' == action_name && session[:shikai_count] == nil %>
+          <%= link_to ai_ability_path(shikai: post.shikai, shikai_hurigana: post.shikai_hurigana, ability: post.tag_list.first, atmosphere: post.tag_list.second), data: { turbo: true, turbo_method: :get, action: 'click->alert#placeholder', alert_target: 'buttom' }, class: 'btn btn-dark btn-sm' do %>
+            <p style="font-size: 10px;" class="mb-0">※1日1回まで使用できます</p>
+            AIで能力を生成する
+          <% end %>
+        <% end %>
+      </div>
+      <%= turbo_frame_tag "ability-generate" do %>
+        <%= f.text_area :ability, class: 'form-control mt-1', rows: 10, data: { alert_target: 'placeholder' } %>
+      <% end %>
     </div>
     <div class="form-group mt-4">
       <%= f.label :bankai %>
@@ -64,8 +73,18 @@
       <%= f.text_field :bankai_hurigana, class: 'mt-1 form-control', placeholder: 'だいぐれんひょうりんまる' %>
     </div>
     <div class="form-group mt-4">
-      <%= f.label :bankai_ability %>
-      <%= f.text_area :bankai_ability, class: 'mt-1 form-control', rows: 10 %>
+      <div class="d-flex justify-content-between align-items-end">
+        <%= f.label :bankai_ability %>
+        <% if 'new_ai' == action_name && session[:bankai_count] == nil %>
+          <%= link_to ai_bankai_ability_path(shikai: post.shikai, shikai_hurigana: post.shikai_hurigana, bankai: post.bankai, bankai_hurigana: post.bankai_hurigana, ability: post.tag_list.first, atmosphere: post.tag_list.second), data: { turbo: true, turbo_method: :get, action: 'click->alert#bankai', alert_target: 'bankaibuttom' }, class: 'btn btn-dark btn-sm' do %>
+            <p style="font-size: 10px;" class="mb-0">※1日1回まで使用できます</p>
+            AIで卍解の能力を生成する
+          <% end %>
+        <% end %>
+      </div>
+      <%= turbo_frame_tag "bankai-ability-generate" do %>
+        <%= f.text_area :bankai_ability, class: 'form-control mt-1', rows: 10, data: { alert_target: 'bankai' } %>
+      <% end %>
     </div>
     <script>
       function previewImage() {

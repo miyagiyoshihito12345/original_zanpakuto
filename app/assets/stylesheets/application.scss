@@ -99,3 +99,20 @@ a {
 	overflow-x: hidden;
 }
 
+
+@keyframes LoadAnimation {
+	0% {
+		background-position: -360px 0;
+	}
+
+	100% {
+		background-position: 360px 0;
+	}
+}
+.placeholder-loading {
+	background: linear-gradient(to right, #eee 8%, #ddd 18%, #eee 33%);
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+	animation-name: LoadAnimation;
+	animation-timing-function: linear;
+}
