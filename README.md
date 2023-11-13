@@ -94,3 +94,6 @@ https://www.figma.com/file/c5lOCP9ThpX4PymcfLGZkF/Untitled?type=design&node-id=0
 
 ## ER図
 ![](https://i.gyazo.com/a5db883cfc2aad36188405589e67e9b5.png)
+
+## PV数,UU数
+PV数：10,368  UU数：397  (2023/10/15〜2023/11/11計測結果)
