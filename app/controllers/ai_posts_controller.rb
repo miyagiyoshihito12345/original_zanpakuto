@@ -59,7 +59,7 @@ class AiPostsController < ApplicationController
     shikai = match_data[1]  # 漢字部分
     shikai_hurigana = match_data[2]  # ふりがな部分
 
-    input = "斬魄刀「#{shikai}(#{shikai_hurigana})」に似合う命令形の動詞を考えて下さい。"
+    input = "「#{shikai}(#{shikai_hurigana})」に似合う命令形の動詞を考えて下さい。"
 
     additional_prompt = "質問には命令形の動詞で答えてください。その動詞の横に()でふりがなを添えて下さい。解答例は、#{kaigo_example}です。"
 
