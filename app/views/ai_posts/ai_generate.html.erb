@@ -50,7 +50,7 @@
             <%= f.submit "能力の説明も生成する", class: "complete-btn btn btn-dark" %>
           <% end %>
         <% end %>
-        <%= link_to "https://twitter.com/share?url=
+        <%= link_to "https://twitter.com/intent/tweet?url=
         #{ root_url }&text=#{ '【解号】'+@post.kaigo }#{ '('+@post.kaigo_hurigana+')' }
          %0a#{ '【始解】'+@post.shikai }#{ '('+@post.shikai_hurigana+')' }
          %0a#{ '【卍解】'+@post.bankai }#{'('+@post.bankai_hurigana+')'}

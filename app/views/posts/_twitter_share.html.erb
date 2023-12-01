@@ -1,5 +1,5 @@
 <% if post.is_draft == false %>
-  <%= link_to "https://twitter.com/share?url=
+  <%= link_to "https://twitter.com/intent/tweet?url=
   #{ post_url(post) }&text=オリジナル斬魄刀をシェアします！
   %0a【始解】#{ post.shikai }#{ post.shikai_hurigana.present? ? '('+post.shikai_hurigana+')' : '' }
   %0a#{ '【卍解】'+post.bankai if post.bankai.present? }#{ post.bankai_hurigana.present? ? '('+post.bankai_hurigana+')' : '' }
