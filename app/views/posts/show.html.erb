@@ -22,35 +22,35 @@
       <ul class="list-group list-group-flush">
         <% if @post.kaigo.present? %>
           <li class="list-group-item p-0 pb-2 pt-2 d-flex justify-content-between align-items-start">
-            <div class="me-auto d-flex align-items-end">
-              <div class="fw-bold h6 mb-0 text-nowrap">【<%= t('.kaigo')  %>】</div>
-              <ruby class="h6 fw-bold mb-0">
+            <div class="me-auto d-flex align-items-center">
+              <div class="fw-bold h6 mb-0 mt-2 text-nowrap">【<%= t('.kaigo')  %>】</div>
+              <div class="h6 fw-bold mb-0 text-left">
+                <div style="font-size: 8px;"><%= @post.kaigo_hurigana %></div>
                 <%= @post.kaigo %>
-                <rt><%= @post.kaigo_hurigana %></rt>
-              </ruby>
+              </div>
             </div>
           </li>
         <% end %>
         <li class="list-group-item d-flex p-0 pb-2 pt-2 justify-content-between align-items-start">
           <div class="me-auto d-flex align-items-end">
-            <div class="fw-bold h5 mb-0 text-nowrap">【<%= t('.shikai')  %>】</div>
-            <ruby class="h5 fw-bold mb-0">
+            <div class="fw-bold h6 mb-0 text-nowrap">【<%= t('.shikai')  %>】</div>
+            <ruby class="h6 fw-bold mb-0">
               <%= @post.shikai %>
               <rt><%= @post.shikai_hurigana %></rt>
             </ruby>
           </div>
         </li>
         <li class="list-group-item p-0 pb-2 pt-2 d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">【<%= t('.ability')  %>】</div>
+          <div class="me-auto">
+            <div class="fw-bold h6">【<%= t('.ability')  %>】</div>
             <%= simple_format(@post.ability) %>
           </div>
         </li>
         <% if @post.bankai.present? %>
           <li class="list-group-item d-flex p-0 pb-2 pt-2 justify-content-between align-items-start">
             <div class="me-auto d-flex align-items-end">
-              <div class="fw-bold h5 mb-0 text-nowrap">【<%= t('.bankai')  %>】</div>
-              <ruby class="h5 fw-bold mb-0">
+              <div class="fw-bold h6 mb-0 text-nowrap">【<%= t('.bankai')  %>】</div>
+              <ruby class="h6 fw-bold mb-0">
                 <%= @post.bankai %>
                 <rt><%= @post.bankai_hurigana %></rt>
               </ruby>
@@ -59,7 +59,7 @@
         <% end %>
         <% if @post.bankai_ability.present? %>
           <li class="list-group-item p-0 pb-2 pt-2 d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
+            <div class="me-auto">
               <div class="fw-bold">【<%= t('.bankai_ability')  %>】</div>
               <%= simple_format(@post.bankai_ability) %>
             </div>
@@ -67,7 +67,7 @@
         <% end %>
         <% if @post.detail.present? %>
           <li class="list-group-item d-flex p-0 pb-2 pt-2 justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
+            <div class="me-auto">
               <div class="fw-bold">【<%= t('.detail')  %>】</div>
               <%= simple_format(@post.detail) %>
             </div>
