@@ -18,6 +18,7 @@ export default class extends Controller {
 		this.newTarget.classList.remove("active");
 	}   
 	before_reiatu_button() {
+		event.preventDefault();
 		alert("ログイン後にいいね機能が使えます");                  
 	}   
 }

@@ -10,7 +10,7 @@ a {
 	overflow: hidden;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 4; /* 任意の行数を指定 */
+	-webkit-line-clamp: 3; /* 任意の行数を指定 */
 }
 .smart_hoge {
 	display: none;
@@ -115,4 +115,41 @@ a {
 	animation-iteration-count: infinite;
 	animation-name: LoadAnimation;
 	animation-timing-function: linear;
+}
+
+.twitter-button {
+	&:hover {
+		opacity: 0.5;
+	}
+}
+
+.before-reiatu {
+	&:hover {
+		opacity: 0.5;
+	}   
+}
+
+.tag-hover {
+	&:hover {
+		opacity: 0.7;
+	}  
+}
+
+.post-card-link {
+	&:hover {
+		color: black;
+		border: 1px solid rgba(0, 0, 0, 0.25);
+		box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.1);
+	} 
+}
+
+.turbo-reiatu {
+	&:hover {
+		opacity: 0.5;
+	} 
+}
+.turbo-unreiatu {
+	&:hover {
+		opacity: 0.5;
+	} 
 }
