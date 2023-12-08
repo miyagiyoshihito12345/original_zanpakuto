@@ -38,6 +38,16 @@ class Post < ApplicationRecord
   end 
 
   def winning_rate(post)
-    self.power * 100 / (self.power + post.power)
+    rate = self.power * 100 / (self.power + post.power)
+
+    if rate <= 39
+      rate += 10
+    end
+
+    if rate >= 61
+      rate -= 10
+    end
+
+    rate
   end
 end
