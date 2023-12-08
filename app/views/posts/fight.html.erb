@@ -22,7 +22,7 @@
       <div class="d-flex justify-content-around">
         <!-- Twitterシェアボタンは保留 -->
         <%# render 'posts/twitter_fight_share', my_post: @my_post, post: @post, win: @win, winning_rate: @winning_rate, meigen: @meigen %>
-        <%= link_to '別の斬魄刀と戦う', fight_select_path(id: @my_post.id), class: 'mt-4 btn btn-dark' %>
+        <%= link_to '別の斬魄刀と戦う', 'javascript:history.back()', class: 'mt-4 btn btn-dark' %>
         <%= link_to '斬魄刀詳細に戻る', post_path(@my_post), class: 'mt-4 btn btn-dark' %>
       </div>
     </div>

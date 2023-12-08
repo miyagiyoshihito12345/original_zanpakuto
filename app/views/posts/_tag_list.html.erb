@@ -9,8 +9,11 @@
 <% else %>
   <div class="mb-1">
     <% tag_list.each do |tag| %>
-      <span class="bg-dark me-1 p-1 rounded-2" style="font-size: 12px;">
-        <%= link_to tag, search_path(tag_name: tag), class: "text-white", style: 'font-size: 12px; text-decoration: none;', data: { turbo: false } %>
+      <span data-controller="tag">
+        <span class="bg-dark me-1 p-1 rounded-2 text-white tag-hover" style="font-size: 12px; cursor: pointer;" data-action="click->tag#tag">
+          <%= tag %>
+        </span>
+        <span class="d-none" data-tag-target="link"><%= search_path(tag_name: tag) %></span>
       </span>
     <% end %>
   </div>

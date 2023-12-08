@@ -1,10 +1,13 @@
 <% if post.is_draft == false %>
-  <%= link_to "https://twitter.com/intent/tweet?url=
-  #{ post_url(post) }&text=オリジナル斬魄刀をシェアします！
-  %0a【始解】#{ post.shikai }#{ post.shikai_hurigana.present? ? '('+post.shikai_hurigana+')' : '' }
-  %0a#{ '【卍解】'+post.bankai if post.bankai.present? }#{ post.bankai_hurigana.present? ? '('+post.bankai_hurigana+')' : '' }
-  %0a%0a%23BLEACH%20%20%0a%23BLEACH_anime%20%20%0a%23オリジナル斬魄刀投稿サイト%20%0a", target: '_blank' do %>
-      <%= fa_stacked_icon "twitter", base: "square-o", style: 'color: #3399FF;' %>
-    <% end %> 
+  <div data-controller="twitter" style="cursor: pointer;">
+    <%= fa_stacked_icon "twitter", class: 'twitter-button', base: "square-o", style: 'color: #3399FF;', data: { action: 'click->twitter#twitter' } %>
+    <p class="d-none" data-twitter-target='link'>
+    <%= "https://twitter.com/intent/tweet?url=
+    #{ post_url(post) }&text=オリジナル斬魄刀をシェアします！
+    %0a【始解】#{ post.shikai }#{ post.shikai_hurigana.present? ? '('+post.shikai_hurigana+')' : '' }
+    %0a#{ '【卍解】'+post.bankai if post.bankai.present? }#{ post.bankai_hurigana.present? ? '('+post.bankai_hurigana+')' : '' }
+    %0a%0a%23BLEACH%20%20%0a%23BLEACH_anime%20%20%0a%23オリジナル斬魄刀投稿サイト%20%0a" %>
+    </p>
+  </div>
 <% end %>
 
