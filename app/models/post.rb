@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   has_many :reiatus, dependent: :destroy
 
   def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "id", "shikai", "bankai", "updated_at"]
+    ["created_at", "id", "kaigo", "shikai", "bankai", "detail", "updated_at"]
   end
   def self.ransackable_associations(auth_object = nil)
     ["user"]

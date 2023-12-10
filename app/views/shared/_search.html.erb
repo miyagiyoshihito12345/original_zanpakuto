@@ -1,12 +1,7 @@
 <%= search_form_for @q, url: search_path do |f| %>
   <div class="input-group mt-3" style="justify-content: center; align-items: center;">
-    <div data-controller="autocomplete" data-autocomplete-url-value="/posts/search_shikai" style="position: relative;" role="combobox">
-      <%= f.search_field :shikai_cont, data: { 'autocomplete-target' => 'input' }, placeholder: t('defaults.search_shikai'), style: 'font-family: serif;', class: 'form-control' %>
-      <%= f.hidden_field :id, data: { 'autocomplete-target' => 'hidden' } %>
-      <ul class="list-group" data-autocomplete-target="results" style="width: 185px; position: absolute; z-index: 10;"></ul>
-    </div>
-    <div data-controller="autocomplete" data-autocomplete-url-value="/posts/search_bankai" style="position: relative;" role="combobox">
-      <%= f.search_field :bankai_cont, data: { 'autocomplete-target' => 'input' }, placeholder: t('defaults.search_bankai'), style: 'font-family: serif;', class: 'form-control' %>
+    <div data-controller="autocomplete" data-autocomplete-url-value="/posts/search_kaigo_shikai_bankai" style="position: relative;" role="combobox">
+      <%= f.search_field :kaigo_or_shikai_or_bankai_cont, data: { 'autocomplete-target' => 'input' }, placeholder: t('defaults.search_kaigo_shikai_bankai'), style: 'font-family: serif;', class: 'form-control' %>
       <%= f.hidden_field :id, data: { 'autocomplete-target' => 'hidden' } %>
       <ul class="list-group" data-autocomplete-target="results" style="width: 185px; position: absolute; z-index: 10;"></ul>
     </div>
@@ -14,6 +9,25 @@
       <%= f.search_field :user_name_cont, data: { 'autocomplete-target' => 'input' }, placeholder: t('defaults.search_username'), style: 'font-family: serif;', class: 'form-control' %>
       <%= f.hidden_field :id, data: { 'autocomplete-target' => 'hidden' } %>
       <ul class="list-group" data-autocomplete-target="results" style="width: 185px; position: absolute; z-index: 10;"></ul>
+    </div>
+    <div style="width: 204px; position: relative;">
+      <%= f.select :id_not_eq, 
+        [ 
+          ["氷雪系","氷雪系"], 
+          ["炎熱系","炎熱系"],
+          ["雷系","雷系"],
+          ["流水系","流水系"],
+          ["幻覚・催眠系","幻覚・催眠系"],
+          ["鬼道系","鬼道系"],
+          ["直接攻撃系","直接攻撃系"],
+          ["生物系","生物系"],
+          ["特殊能力系","特殊能力系"],
+          ["ネタ系","ネタ系"]
+        ], 
+        { include_blank: "タグ" }, 
+        { class: 'form-control', style: 'cursor:pointer' } 
+      %>
+      <i class="fa fa-angle-down fa-lg" aria-hidden="true" style="position: absolute; top: 12px; right: 10px;"></i>
     </div>
     <div class="input-group-append ms-2">
       <%= f.submit  class: 'btn btn-dark', style: 'font-family: serif;' %>

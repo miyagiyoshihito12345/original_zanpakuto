@@ -14,7 +14,7 @@ ja:
     edit: '編集'
     destroy: '削除'
     update: '更新する'
-    search_shikai: '始解名'
+    search_kaigo_shikai_bankai: '解号・始解・卍解名'
     search_bankai: '卍解名'
     search_username: 'ユーザー名'
     tag_placeholder: '氷雪系,オサレ系,氷雪系最強'

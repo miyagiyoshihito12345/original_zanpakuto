@@ -5,8 +5,8 @@ class PostsController < ApplicationController
   include FightActions
 
   skip_before_action :require_login, only: %i[
-  index show search search_shikai
-  search_bankai search_username 
+  index show search 
+  search_kaigo_shikai_bankai search_username 
   index_new_order index_edit_order 
   index_reiatu_order fight_select 
   fight fight_detail fight_close
@@ -14,7 +14,7 @@ class PostsController < ApplicationController
 
   before_action :set_post, only: %i[edit update destroy]
 
-  layout 'layouts/autocomplete', only: %i[ search_shikai search_bankai search_username search_tag ]
+  layout 'layouts/autocomplete', only: %i[ search_kaigo_shikai_bankai search_username search_tag ]
 
   def index
     @q = Post.ransack(params[:q])
