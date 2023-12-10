@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   resources :posts do
     collection do
       get :index_new_order, :index_edit_order, :index_reiatu_order,
-        :search_shikai, :search_bankai, :search_username, :search_tag
+        :search_kaigo_shikai_bankai, :search_username, :search_tag
     end
   end
 

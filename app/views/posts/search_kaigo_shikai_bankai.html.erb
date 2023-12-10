@@ -1,0 +1,15 @@
+<% @posts_kaigo.each do |post| %>
+  <li class="list-group-item bg-white text-dark" role="option" data-autocomplete-value="<%= post.id %>" data-autocomplete-label="<%= post.kaigo %>">
+    <%= post.kaigo %>
+  </li>
+<% end %>
+<% @posts_shikai.each do |post| %>
+  <li class="list-group-item bg-white text-dark" role="option" data-autocomplete-value="<%= post.id %>" data-autocomplete-label="<%= post.shikai %>">
+    <%= post.shikai %>
+  </li>
+<% end %>
+<% @posts_bankai.each do |post| %>
+  <li class="list-group-item bg-white text-dark" role="option" data-autocomplete-value="<%= post.id %>" data-autocomplete-label="<%= post.bankai %>">
+    <%= post.bankai %>
+  </li>
+<% end %>
