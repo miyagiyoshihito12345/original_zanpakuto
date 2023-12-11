@@ -40,13 +40,10 @@ class Post < ApplicationRecord
   def winning_rate(post)
     rate = self.power * 100 / (self.power + post.power)
 
-    if rate <= 39
-      rate += 10
-    end
-
-    if rate >= 61
-      rate -= 10
-    end
+    rate += 10 if rate <= 39
+    rate -= 10 if rate >= 61
+    #10%の確率で超最強チート系になる
+    rate = 99 if rand(1..100) <= 10
 
     rate
   end
