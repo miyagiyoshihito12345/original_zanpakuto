@@ -1,7 +1,7 @@
 <%= search_form_for @q, url: search_path do |f| %>
   <div class="input-group mt-3" style="justify-content: center; align-items: center;">
     <div data-controller="autocomplete" data-autocomplete-url-value="/posts/search_kaigo_shikai_bankai" style="position: relative;" role="combobox">
-      <%= f.search_field :kaigo_or_shikai_or_bankai_cont, data: { 'autocomplete-target' => 'input' }, placeholder: t('defaults.search_kaigo_shikai_bankai'), style: 'font-family: serif;', class: 'form-control' %>
+      <%= f.search_field :kaigo_or_shikai_or_bankai_cont, data: { 'autocomplete-target' => 'input' }, placeholder: t('defaults.search_kaigo_shikai_bankai'), style: 'font-family: serif; min-width: 186px;', class: 'form-control' %>
       <%= f.hidden_field :id, data: { 'autocomplete-target' => 'hidden' } %>
       <ul class="list-group" data-autocomplete-target="results" style="width: 185px; position: absolute; z-index: 10;"></ul>
     </div>
@@ -12,7 +12,7 @@
     </div>
     <div>
       <%= f.select :id_not_eq, 
-        [ 
+        options_for_select([ 
           ["氷雪系","氷雪系"], 
           ["炎熱系","炎熱系"],
           ["雷系","雷系"],
@@ -23,7 +23,7 @@
           ["生物系","生物系"],
           ["特殊能力系","特殊能力系"],
           ["ネタ系","ネタ系"]
-        ], 
+        ], ["#{@select}","#{@select}"]), 
         { include_blank: "タグ" }, 
         { class: 'form-select', style: 'cursor:pointer' } 
       %>
