@@ -13,6 +13,7 @@ module SearchActions
     end 
     @tag_name = ""
     if params[:q][:id_not_eq].present?
+      @select = params[:q][:id_not_eq]
       @posts = @q.result(distinct: true).tagged_with("#{params[:q][:id_not_eq]}").where(is_draft: false).includes(:user).order(updated_at: :desc).page(params[:page])
     else
       @posts = @q.result(distinct: true).where(is_draft: false).includes(:user).order(updated_at: :desc).page(params[:page])
