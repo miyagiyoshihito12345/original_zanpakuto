@@ -10,7 +10,7 @@
       <%= f.hidden_field :id, data: { 'autocomplete-target' => 'hidden' } %>
       <ul class="list-group" data-autocomplete-target="results" style="width: 185px; position: absolute; z-index: 10;"></ul>
     </div>
-    <div style="width: 204px; position: relative;">
+    <div>
       <%= f.select :id_not_eq, 
         [ 
           ["氷雪系","氷雪系"], 
@@ -25,9 +25,8 @@
           ["ネタ系","ネタ系"]
         ], 
         { include_blank: "タグ" }, 
-        { class: 'form-control', style: 'cursor:pointer' } 
+        { class: 'form-select', style: 'cursor:pointer' } 
       %>
-      <i class="fa fa-angle-down fa-lg" aria-hidden="true" style="position: absolute; top: 12px; right: 10px;"></i>
     </div>
     <div class="input-group-append ms-2">
       <%= f.submit  class: 'btn btn-dark', style: 'font-family: serif;' %>
