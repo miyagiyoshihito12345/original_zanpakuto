@@ -16,6 +16,23 @@ class PostsController < ApplicationController
 
   layout 'layouts/autocomplete', only: %i[ search_kaigo_shikai_bankai search_username search_tag ]
 
+  def tag_fix
+    Post.all.each do |post|
+      if post.tag_list.first&.include?("，")
+        ActiveRecord::Base.transaction do
+          tag_name = post.tag_list.first
+          post.tag_list.remove(tag_name)
+          post.save!
+          ActsAsTaggableOn::Tag.find_by(name: tag_name)&.destroy!
+          tags = tag_name.split("，")
+          post.tag_list.add(tags)
+          post.save!
+        end
+      end
+    end
+    redirect_to root_path
+  end
+
   def index
     @q = Post.ransack(params[:q])
     @posts = Post.where(is_draft: false).includes(:user).order(created_at: :desc).page(params[:page])
