@@ -16,6 +16,7 @@ class PostsController < ApplicationController
 
   layout 'layouts/autocomplete', only: %i[ search_kaigo_shikai_bankai search_username search_tag ]
 
+=begin
   def tag_fix
     Post.all.each do |post|
       if post.tag_list.first&.include?("，")
@@ -32,6 +33,7 @@ class PostsController < ApplicationController
     end
     redirect_to root_path
   end
+=end
 
   def index
     @q = Post.ransack(params[:q])
