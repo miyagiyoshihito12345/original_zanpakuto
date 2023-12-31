@@ -40,3 +40,4 @@
 /vendor/bundle
 
 /public/sitemap.xml.gz
+/coverage
