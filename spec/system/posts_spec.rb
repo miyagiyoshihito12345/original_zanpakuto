@@ -74,6 +74,18 @@ RSpec.describe 'Posts', type: :system do
           expect(current_path).to eq '/posts'
         end
       end
+
+      context '「能力」が未入力' do
+        it '投稿の新規作成が失敗する' do
+          visit new_post_path
+          fill_in '始解', with: '氷輪丸'
+          fill_in '能力', with: ''
+          click_button '投稿する'
+          expect(page).to have_content '投稿を作成できませんでした'
+          expect(page).to have_content '能力を入力してください'
+          expect(current_path).to eq '/posts'
+        end
+      end
     end
 
     describe '投稿編集' do
