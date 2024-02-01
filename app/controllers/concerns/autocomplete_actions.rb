@@ -13,16 +13,16 @@ module AutocompleteActions
   end 
 
   def search_tag
-    if params[:q].end_with?(",")
+    if params[:q].end_with?(",", "，", "、")
       @tags = Tag.none
       @result = ""
       return
     end 
     string = params[:q]
-    elements = string.split(',')
+    elements = string.split(/[,，、]/)
     elements.pop
     @result = elements.join(',')
-    @tags = Tag.where("name like ?", "%#{params[:q].split(',').last}%")
+    @tags = Tag.where("name like ?", "%#{params[:q].split(/[,，、]/).last}%")
   end 
 end 
 
