@@ -1,7 +1,7 @@
 # オリジナル斬魄刀投稿サイト
 ![](https://i.gyazo.com/1145548ffd90cbb39275cf393c035c41.png)
 ## サービスURL
-https://www.originalzanpakuto.com/
+https://original-zanpakuto-share-service.onrender.com/
 ## サービス概要
 ユーザーが自分の考えたオリジナル斬魄刀の名前や能力の説明などを投稿、共有することができるサービスです。
 また、他人の投稿を見て楽しんだり、AIでオリジナル斬魄刀の名前を自動生成して楽しんだりすることも出来ます。
