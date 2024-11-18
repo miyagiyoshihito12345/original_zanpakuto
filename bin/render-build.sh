@@ -11,8 +11,10 @@ if ! command -v node &>/dev/null; then
   nvm use 23.2.0
 fi
 
+curl https://bun.sh/install | bash
+
 # Proceed with the rest of the build steps
 bundle install
-bundle exec rake assets:precompile  
+bundle exec rake assets:precompile
 bundle exec rake assets:clean
 bundle exec rake db:migrate
