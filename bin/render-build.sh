@@ -11,7 +11,9 @@ if ! command -v node &>/dev/null; then
   nvm use 23.2.0
 fi
 
-curl https://bun.sh/install | bash
+curl -fsSL https://bun.sh/install | bash
+export PATH="$HOME/.bun/bin:$PATH"
+bun install
 
 # Proceed with the rest of the build steps
 bundle install
