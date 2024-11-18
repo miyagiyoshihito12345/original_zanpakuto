@@ -1,10 +1,10 @@
 # オリジナル斬魄刀投稿サイト
 ![](https://i.gyazo.com/1145548ffd90cbb39275cf393c035c41.png)
 ## サービスURL
-https://original-zanpakuto-share-service.onrender.com/
+https://www.originalzanpakuto.com/
 ## サービス概要
 ユーザーが自分の考えたオリジナル斬魄刀の名前や能力の説明などを投稿、共有することができるサービスです。
-また、他人の投稿を見て楽しんだり、AIでオリジナル斬魄刀の名前を自動生成して楽しんだりすることも出来ます。
+また、他人の投稿を見て楽しむこともできます。
 
 
 ## 斬魄刀(ざんぱくとう)とは？
@@ -23,7 +23,7 @@ https://original-zanpakuto-share-service.onrender.com/
 そのような人々に対してこのサービスを提供しようと考えました。
 ユーザーの考えた面白い斬魄刀や、カッコいい斬魄刀、オサレな斬魄刀を共有することでBLEACHファン同士で盛り上がって
 いければとても楽しいサービスになると思いました。現状オリジナル斬魄刀を投稿することに特化したサービスがない
-ので、カッコよくてオサレなデザインでサービスを作れば、すぐにユーザーに使ってもらえると思います。(2023/09/30にBLEACHアニメの第2クールが終わり、そこから約半年後に第3クールのアニメが始まる予定です。第3クールの放送開始時期は変更になる可能性があります。)
+ので、カッコよくてオサレなデザインでサービスを作れば、すぐにユーザーに使ってもらえると思います。
 
 
 
@@ -50,44 +50,29 @@ https://original-zanpakuto-share-service.onrender.com/
 * 他の投稿に対していいね(霊圧)がつけられる
 * マイページで自分がいいね(霊圧)した投稿の一覧が見れる
 * 投稿一覧を「新着順」「人気順」「更新順」で並び替えられる
-* AIで斬魄刀の名前を自動生成できる機能(未ログインでも使用可)
+* AIで斬魄刀の名前を自動生成できる機能(未ログインでも使用可)(廃止)
 * 斬魄刀同士を戦わせる診断系の機能(未ログインでも使用可)
 
 
 ### 本リリース後に実装したい機能
-* オリジナル斬魄刀を投稿するたびにトップページのデザインが変化する(この機能を追加するかどうかは未定)
-* 他の投稿をブックマークできる。ブックマーク一覧が見れる
-* 管理画面へのログイン機能、ユーザー、投稿のCRUD機能
-* パスワードリセット
 * 投稿をTwitterで共有できる(OGP画像を動的にする)(この機能を追加するかどうかは未定)
 
 ## どうやって高度な機能を実装するか
 ### マイページで自分が投稿した斬魄刀の一覧が見れる
 →コントローラー側で @posts = current_user.posts.allとし、viewでeach文を使って表示する。
-### パスワードリセット
-→SorceryのReset Passwordモジュールとletter_opener_webの導入。
 ### 下書き保存機能
 → https://qiita.com/mi-1109/items/4d81992fbae6f2067a82
-### オリジナル斬魄刀を投稿するたびにトップページのデザインが変化する
-→ current_user.posts.countの値が0→1になった時、トップページがswiperで2枚
-表示されて新しいデザインが増え、current_user.posts.countの値が2,3になるにつれて、swiperで表示される枚数が1ずつ
-増えていく。4以降は増えないものとするが、MVP以降どんどん増やしていく。どのくらい増やすかは未定。
-https://osamudaira.com/411/
 ### 斬魄刀名やユーザーの名前で投稿を検索できる(マルチ検索、オートコンプリート機能付き検索フォーム)
 → https://github.com/activerecord-hackery/ransack
 https://github.com/afcapel/stimulus-autocomplete
 ### 投稿にタグ付けができる。新規タグの作成、タグで検索ができる
 →acts-as-taggable-onのgemを使用する
-### 他の投稿をブックマークできる。ブックマーク一覧が見れる
-→ https://osamudaira.com/217/
-### 管理画面へのログイン機能、ユーザー、投稿のCRUD機能
-→ https://osamudaira.com/257/
 
 ## 画面遷移図
 https://www.figma.com/file/c5lOCP9ThpX4PymcfLGZkF/Untitled?type=design&node-id=0%3A1&mode=design&t=Qd7h8gmYp4W0o7hz-1
 
 ## ER図
-![](https://i.gyazo.com/a5db883cfc2aad36188405589e67e9b5.png)
+[![Image from Gyazo](https://i.gyazo.com/883e17bb580376db7f73587fab5188f8.png)](https://gyazo.com/883e17bb580376db7f73587fab5188f8)
 
 ## PV数,UU数
 PV数：10,368  UU数：397  (2023/10/15〜2023/11/11計測結果)
